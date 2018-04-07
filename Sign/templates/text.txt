@@ -1,0 +1,1 @@
+<img src="{{logo_url}}" alt="Brand" class="img-circle img-responsive">

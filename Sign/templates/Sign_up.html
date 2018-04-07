@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Sign_up</title>
+        <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/another.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/another.js"></script>
+        <script src="../static/js/sign_up.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{index}}">
+                        <img src="{{logo_url}}" alt="Brand" class="img-circle img-responsive">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{index}}" id="index">主页</a></li>
+                        <li>
+                            <a href="{{sign_in}}" class="tips">登录</a>
+                        </li>
+                        <li>
+                            <a href="{{sign_up}}" class="tips">注册</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="center">
+            <div class="container-fluid">
+                <div id="center3">
+                    <img src="{{logo_url}}" alt="logo" class="img-circle img-responsive">
+                </div>
+                <form action="sign_up_form" method="POST">
+                    {% csrf_token %}
+                    <div id="center2">
+                        <div class="form-group">
+                            <label for="Userid">用户名:</label>
+                            <input type="text" class="form-control" id="{{user_id}}" placeholder="请输入您的用户名">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">邮箱:</label>
+                            <input type="email" class="form-control" id="{{email}}" placeholder="请输入您的邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">密码:</label>
+                            <input type="password" class="form-control" id="{{password1}}" placeholder="请输入您的密码">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">再次输入密码:</label>
+                            <input type="password" class="form-control" id="{{password2}}" placeholder="请再次输入您的密码">
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block" id="sign up" onclick="postFormData()">注册</button>
+                        <div class="row">
+                            <button type="button" class="btn btn-link btn-block" id="sign in" onclick="jumpSignIn()">登录</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+    </script>
+</html>

@@ -1,0 +1,20 @@
+function postLogOut(){
+    $.ajax({
+        url:"logOut",
+        type:"get",
+        dataType:"json",
+        data:{'logOut':true},
+        async:false,
+        success:function(response){
+            if(response['logOut']==true){
+                alert("注销成功！");
+            }
+            else{
+                alert("注销失败！");
+            }
+        },
+        error:function(){
+            alert("注销失败！");
+        }
+    });
+}
