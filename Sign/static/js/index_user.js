@@ -1,3 +1,4 @@
+// 将登出请求发送到后端
 function postLogOut(){
     $.ajax({
         url:"logOut",

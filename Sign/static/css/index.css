@@ -1,0 +1,15 @@
+#center4{
+    padding-top:100px;
+    position: relative;
+}
+
+.info{
+    font-size:15px;
+    font-family:"华文中宋";
+}
+
+.info_2{
+    font-size:13px;
+    font-family:"华文中宋";
+    color:rgb(5, 73, 136);
+}

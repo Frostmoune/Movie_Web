@@ -1,3 +1,4 @@
+// 发送请求到后端，请求后端发送电影信息，此函数用于跳转时
 function getMovieList(obj){
     nowtext = obj.text;
     $.ajax({
@@ -9,6 +10,7 @@ function getMovieList(obj){
     });
 }
 
+// 根据后端发来的Json信息改变当前页面的电影信息
 function changeMovieList(obj){
     path = "../static/items/";
     pre = "movie_show_";
@@ -23,6 +25,7 @@ function changeMovieList(obj){
     }
 }
 
+// 发送请求到后端，请求后端发送电影信息，此函数用于跳转后的页面（页面每10s发送一个请求）
 window.onload=setInterval(function(){
     nowtag = document.title
     if(nowtag=="Index"){
@@ -55,5 +58,5 @@ window.onload=setInterval(function(){
             }
         });
     }
-},10000)
+},10000) // 10000表示10000毫秒
 

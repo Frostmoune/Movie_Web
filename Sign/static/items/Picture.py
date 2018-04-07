@@ -1,3 +1,4 @@
+# 这个包用于处理收集到的海报图片，可以不用管
 from PIL import Image
 import os
 from PIL import ImageFile

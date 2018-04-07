@@ -20,6 +20,7 @@ from Movies import movie as signmovie
 from Sign import sign
 
 urlpatterns = [
+    # 不同的请求地址对应不同的函数
     path('admin/', admin.site.urls),
     path('index/', signviews.index),
     path('signIn/', signviews.signIn),

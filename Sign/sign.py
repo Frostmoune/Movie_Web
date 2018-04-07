@@ -14,6 +14,7 @@ import random
 import os
 import re
 
+# 从ajax中获取注册信息
 def getSignUp(request):
     infomation = {'isLogin':False,'userExist':False}
     if request.method=='POST':
@@ -38,10 +39,12 @@ def getSignUp(request):
             return JsonResponse(infomation)
     return JsonResponse(infomation)
 
+# 用于跳转页面的渲染
 info = {'now_title':'Jump',
         'logo_url':'../static/image/logo.png',
         'address':'/index'}
 
+# 从ajax中获取登录信息
 @csrf_exempt
 def getSignIn(request):
     infomation = {'isLogin':False}
@@ -59,11 +62,13 @@ def getSignIn(request):
                 return JsonResponse(infomation)
     return JsonResponse(infomation)
 
+# 跳转模块
 @csrf_exempt
 def Jump(request):
     info['tips_infomation'] = "您好，" + str(request.user) 
     return render(request, "Jump.html", info)
 
+# 登出模块
 def doLogOut(request):
     if request.method=="GET":
         auth.logout(request)

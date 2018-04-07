@@ -1,0 +1,58 @@
+#center6{
+    left:32%;
+    top:15%;
+    width:32%;
+    height:calc(50% - 100px);
+    overflow: auto;
+    position: absolute;
+    border-radius: 15px;
+    box-shadow:2px 2px 1px rgba(48, 45, 45, 0.986);
+    background: rgb(250, 227, 226);
+    display:inline-block; 
+    width:fill-available;
+}
+
+#center7{
+    left:36%;
+    top:2%;
+    width:auto;
+    height:auto;
+    display:inline-block;
+    max-width: 35%;
+    max-height: 35%;
+    transform: translate(-10%,2%);
+    -webkit-transform: translate(-10%,2%);
+    -moz-transform: translate(-10%,2%);
+    -ms-transform: translate(-10%,2%);
+    overflow: auto;
+    position: relative;
+    background: rgb(250, 227, 226); 
+    font-family: "华文中宋";
+}
+
+#center8{
+    left:35%;
+    width:30%;
+    position: relative;
+}
+
+.container #center7 > button{
+    font-size: 22px;
+    color:rgb(250, 9, 9);
+    background-color:rgb(235, 235, 247);
+}
+
+.container-fluid .row #center7{
+    border: none;
+    display: inline-block;
+}
+
+#center8 > button{
+    font-size: 20px;
+    background-color:rgb(54, 54, 252);
+}
+
+#center8 > button:hover{
+    background-color:white;
+    color:black;
+}

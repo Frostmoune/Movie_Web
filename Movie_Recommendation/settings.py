@@ -120,6 +120,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# 这一部分用于把静态文件推到页面上
 STATIC_ROOT = os.path.join(SIGN_DIR,'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (

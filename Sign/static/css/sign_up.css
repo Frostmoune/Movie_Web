@@ -1,0 +1,48 @@
+#center{
+    left:39%;
+    top:25%;
+    width:20%;
+    height:calc(84% - 100px);
+    overflow: auto;
+    position: absolute;
+    border-radius: 15px;
+    box-shadow:2px 2px 1px rgba(48, 45, 45, 0.986);
+    background: rgb(239, 248, 233);
+    display:inline-block; 
+    width:fill-available;
+}
+
+#center2{
+    padding-top:50%;
+    left:5%;
+    width:90%;
+    max-height:60%;
+    height:auto;
+    position: absolute;
+    display:inline-block; 
+}
+
+#center3{
+    top:5%;
+    left:30%;
+    position: absolute;
+    display:inline-block;
+    width:auto;
+    height:auto;
+    max-width: 45%;
+    max-height: 45%;
+    transform: translate(-5%,-5%);
+    -webkit-transform: translate(-5%,-5%);
+    -moz-transform: translate(-5%,-5%);
+    -ms-transform: translate(-5%,-5%);
+}
+
+.navbar .nav > li > .tips{
+    color: rgb(168, 174, 236);    
+}
+
+.navbar .nav > li > .tips:hover {
+    color: white;
+    background-color: #000000;
+    cursor: pointer;
+}

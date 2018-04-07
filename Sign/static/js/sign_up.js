@@ -1,3 +1,4 @@
+// 根据请求决定是否跳转
 function getSignUpForm(response){
     if(response['isLogin']==false){
         if(response['userExist']==true){
@@ -13,6 +14,7 @@ function getSignUpForm(response){
     }
 }
 
+// 将用户输入的注册信息发送到后端
 function postFormData(){
     password = $("#Password").val();
     confirm = $("#ConfirmPassword").val();
