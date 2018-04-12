@@ -101,7 +101,7 @@ def pullMovieList(request):
                 now_movie_info = all_movies[now_num]
             is_vis[now_num] = 1
             # 传递给前端页面用于渲染的信息
-            now_movie['movie_show_' + str(i+1)] = "海报/" + now_movie_info.image_id + ".jpg"
+            now_movie['movie_show_' + str(i+1)] = "poster/" + now_movie_info.image_id + ".jpg"
             now_movie['movie_show_' + str(i+1) + '_title'] = now_movie_info.title
             now_movie['movie_show_' + str(i+1) + '_score'] = now_movie_info.score
             now_movie['movie_show_' + str(i+1) + '_type'] = now_movie_info.types
