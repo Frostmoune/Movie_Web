@@ -32,4 +32,6 @@ urlpatterns = [
     path('signUp/jump', sign.Jump),
     path('signIn/jump', sign.Jump),
     path('index/logOut', sign.doLogOut),
+    path('movie/logOut', sign.doLogOut),
+    path('movie/<str:id>', signmovie.showPerMovie),
 ]

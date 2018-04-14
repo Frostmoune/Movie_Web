@@ -2,92 +2,88 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Sign_up</title>
+        <title>Movie</title>
         <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css">
         <link type="text/css" rel="stylesheet" href="../static/css/another.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/index.css">
         <link type="text/css" rel="stylesheet" href="../static/css/movie.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
         <script src="../static/js/another.js"></script>
-        <script src="../static/js/index.js"></script>
+        <script src="../static/js/movie.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{index}}">
-                        <img src="{{logo_url}}" alt="Brand" class="img-circle img-responsive">
+                    <a class="navbar-brand">
+                        <img alt="Brand" class="img-circle img-responsive" id="logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{index}}" id="index">主页</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">国家/地区<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="movie_list?tag=大陆电影" class="btn btn-link" role="button" onclick="getMovieList(this)">大陆电影</a></li>
-                                <li><a href="movie_list?tag=美国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">美国电影</a></li>
-                                <li><a href="movie_list?tag=香港电影" class="btn btn-link" role="button" onclick="getMovieList(this)">香港电影</a></li>
-                                <li><a href="movie_list?tag=台湾电影" class="btn btn-link" role="button" onclick="getMovieList(this)">台湾电影</a></li>
-                                <li><a href="movie_list?tag=日本电影" class="btn btn-link" role="button" onclick="getMovieList(this)">日本电影</a></li>
-                                <li><a href="movie_list?tag=韩国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">韩国电影</a></li>
-                                <li><a href="movie_list?tag=印度电影" class="btn btn-link" role="button" onclick="getMovieList(this)">印度电影</a></li>
-                                <li><a href="movie_list?tag=泰国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">泰国电影</a></li>
-                                <li><a href="movie_list?tag=英国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">英国电影</a></li>
-                                <li><a href="movie_list?tag=法国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">法国电影</a></li>
-                                <li><a href="movie_list?tag=德国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">德国电影</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="movie_list?tag=爱情" class="btn btn-link" role="button" onclick="getMovieList(this)">爱情</a></li>
-                                <li><a href="movie_list?tag=暴力" class="btn btn-link" role="button" onclick="getMovieList(this)">暴力</a></li>
-                                <li><a href="movie_list?tag=传记" class="btn btn-link" role="button" onclick="getMovieList(this)">传记</a></li>
-                                <li><a href="movie_list?tag=动作" class="btn btn-link" role="button" onclick="getMovieList(this)">动作</a></li>
-                                <li><a href="movie_list?tag=犯罪" class="btn btn-link" role="button" onclick="getMovieList(this)">犯罪</a></li>
-                                <li><a href="movie_list?tag=家庭" class="btn btn-link" role="button" onclick="getMovieList(this)">家庭</a></li>
-                                <li><a href="movie_list?tag=剧情" class="btn btn-link" role="button" onclick="getMovieList(this)">剧情</a></li>
-                                <li><a href="movie_list?tag=科幻" class="btn btn-link" role="button" onclick="getMovieList(this)">科幻</a></li>
-                                <li><a href="movie_list?tag=恐怖" class="btn btn-link" role="button" onclick="getMovieList(this)">恐怖</a></li>
-                                <li><a href="movie_list?tag=历史" class="btn btn-link" role="button" onclick="getMovieList(this)">历史</a></li>
-                                <li><a href="movie_list?tag=励志" class="btn btn-link" role="button" onclick="getMovieList(this)">励志</a></li>
-                                <li><a href="movie_list?tag=魔幻" class="btn btn-link" role="button" onclick="getMovieList(this)">魔幻</a></li>
-                                <li><a href="movie_list?tag=女性" class="btn btn-link" role="button" onclick="getMovieList(this)">女性</a></li>
-                                <li><a href="movie_list?tag=青春" class="btn btn-link" role="button" onclick="getMovieList(this)">青春</a></li>
-                                <li><a href="movie_list?tag=情色" class="btn btn-link" role="button" onclick="getMovieList(this)">情色</a></li>
-                                <li><a href="movie_list?tag=文艺" class="btn btn-link" role="button" onclick="getMovieList(this)">文艺</a></li>
-                                <li><a href="movie_list?tag=喜剧" class="btn btn-link" role="button" onclick="getMovieList(this)">喜剧</a></li>
-                                <li><a href="movie_list?tag=悬疑" class="btn btn-link" role="button" onclick="getMovieList(this)">悬疑</a></li>
-                                <li><a href="movie_list?tag=音乐" class="btn btn-link" role="button" onclick="getMovieList(this)">音乐</a></li>
-                                <li><a href="movie_list?tag=战争" class="btn btn-link" role="button" onclick="getMovieList(this)">战争</a></li>
-                                <li><a href="movie_list?tag=黑帮" class="btn btn-link" role="button" onclick="getMovieList(this)">黑帮</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="movie_list?tag=经典" class="btn btn-link" role="button" onclick="getMovieList(this)">经典</a></li>
-                                <li><a href="movie_list?tag=冷门佳片" class="btn btn-link" role="button" onclick="getMovieList(this)">冷门佳片</a></li>
-                            </ul>
+                        {% include 'Navigation.html' %}
+                        <li>
+                            <a class="tips" id="signIn">登录</a>
                         </li>
                         <li>
-                            <p class="navbar-text text-center" id="title"><strong>老电影推荐站</strong></p>
-                        </li>
-                        <li>
-                            <a href="{{sign_in}}" class="tips">登录</a>
-                        </li>
-                        <li>
-                            <a href="{{sign_up}}" class="tips">注册</a>
+                            <a class="tips" id="signUp">注册</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container" id="center4">
+            <div row="page-header">
+                <p class="text-center"><h2 id="titles"></h2></p>
+            </div>
             <div class="row">
-                <div class="col-sm-4 col-md-2">
+                <div class="col-sm-5 col-md-3">
                     <div class="thumbnail">
-                        <img src="../static/items/海报/000001.png" alt="movie_1" title="{{movie_show_1_title}}" id="movie_show_1">
+                        <img alt="movie" id="movie_show">
                     </div>
+                </div>
+                <div class="col-sm-5 col-md-3" id="movie_info">
                 </div>
             </div>
         </div>
+        <script>
+            var infomation = {{ Info|safe }};
+            var other = {{ Other|safe }};
+            var items = {{ Items|safe }};
+            var texts = {{ Text|safe }};
+            $('#index').attr("href", other['index']);
+            $('#logo').attr("src", other['logo_url']);
+            $('#signIn').attr("href", other['sign_in']);
+            $('#signUp').attr("href", other['sign_up']);
+            $('#movie_show').attr("src", other['image_id']);
+            $('#movie_show').attr("title", other['title']);
+            $('#titles').text(other['title']);
+            score = $('<p></p>').attr("id","score").text("评分：");
+            score.append($('<span></span>').text(infomation['score']));
+            $('#movie_info').prepend(score);
+            for(var i=0;i<items.length;++i){
+                if(infomation[items[i]]!="无"){
+                    now_tag = $('<p></p>').attr("id",items[i]).text(texts[i] + "：");
+                    now_info = infomation[items[i]].split("/");
+                    for(var j=0;j<now_info.length;++j){
+                        now_text = now_info[j];
+                        if(j<now_info.length-1){
+                            now_text += "/";
+                        }
+                        if(j<3){
+                            now_tag.append($('<span></span>').text(now_text));
+                        }
+                        else{
+                            now_tag.append($('<span style="display:none;"></span>').text(now_text));
+                        }
+                    }
+                    if(now_info.length>3){
+                        now_tag.append($('<a onclick="moreInfo(this)"></a>').text("更多..."));
+                    }
+                    $('#movie_info').append(now_tag);
+                }
+            }
+        </script>
     </body>
 </html>

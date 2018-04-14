@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import JsonResponse
 from .models import Movie
+import json
 import random
 import os
 import re
@@ -102,6 +103,7 @@ def pullMovieList(request):
             is_vis[now_num] = 1
             # 传递给前端页面用于渲染的信息
             now_movie['movie_show_' + str(i+1)] = "poster/" + now_movie_info.image_id + ".jpg"
+            now_movie['movie_show_' + str(i+1) + '_id'] = now_movie_info.image_id
             now_movie['movie_show_' + str(i+1) + '_title'] = now_movie_info.title
             now_movie['movie_show_' + str(i+1) + '_score'] = now_movie_info.score
             now_movie['movie_show_' + str(i+1) + '_type'] = now_movie_info.types
@@ -116,3 +118,46 @@ def pullMovieList(request):
     except Exception as e:
         print(e)
         return render_to_response(None)
+
+info_tags = {'评分':'score','导演':'diretor','编剧':'screenwriter','类型':'types',
+            '主演':'actor','官方网站':'website','制片国家/地区':'country',
+            '语言':'language','上映日期':'date','片长':'length',
+            '又名':'name','imdb链接':'imdb','集数':'episodes','单集片长':'length_episodes'}
+
+def showPerMovie(request, id):
+    now_movie = Movie.objects.filter(image_id__exact = id)[0]
+    other_info = {'index':'/index/',
+            'logo_url':'../static/image/logo.png',
+            'title':now_movie.title,
+            'image_id':'../static/items/poster/' + now_movie.image_id + ".jpg",
+            'sign_in':'/signIn/',
+            'sign_up':'/signUp/',
+            'user_url':'../static/image/user.png',
+            }
+    movie = {}
+    movie['score'] = now_movie.score
+    movie['diretor'] = now_movie.diretor
+    movie['screenwriter'] = now_movie.screenwriter
+    movie['types'] = now_movie.types
+    movie['actor'] = now_movie.actor
+    movie['website'] = now_movie.website
+    movie['country'] = now_movie.country
+    movie['language'] = now_movie.language
+    movie['date'] = now_movie.date
+    movie['length'] = now_movie.length
+    movie['name'] = now_movie.name
+    movie['imdb'] = now_movie.imdb
+    movie['episodes'] = now_movie.episodes
+    movie['length_episodes'] = now_movie.length_episodes
+    return_dict = {
+        'Info':json.dumps(movie),
+        'Other':json.dumps(other_info),
+        'Text':json.dumps(list(info_tags.keys())[1:]),
+        'Items':json.dumps(list(info_tags.values())[1:]),
+    }
+    if str(request.user)=="AnonymousUser":
+        return render(request, 'Movie.html', return_dict)
+    else:
+        other_info['now_user'] = str(request.user)
+        return_dict['Other'] = json.dumps(other_info)
+        return render(request, 'Movie_User.html', return_dict)

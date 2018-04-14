@@ -9,6 +9,7 @@ function postLogOut(){
         success:function(response){
             if(response['logOut']==true){
                 alert("注销成功！");
+                window.location.reload();
             }
             else{
                 alert("注销失败！");

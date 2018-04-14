@@ -1,14 +1,4 @@
 // 发送请求到后端，请求后端发送电影信息，此函数用于跳转时
-function getMovieList(obj){
-    nowtext = obj.text;
-    $.ajax({
-        url:"movie_list",
-        type:"get",
-        dataType:"json",
-        data:{'tag':nowtext,'isChange':'1'},
-        async:false,
-    });
-}
 
 // 根据后端发来的Json信息改变当前页面的电影信息
 function changeMovieList(obj){
@@ -16,8 +6,9 @@ function changeMovieList(obj){
     pre = "movie_show_";
     for(var i=1;i<13;++i){
         nowpath = path + obj[pre + i.toString()].toString();
-        $("#" + pre + i.toString()).attr("src",nowpath)
-        $("#" + pre + i.toString()).attr("title",obj[pre + i.toString() + "_title"].toString())
+        $("#" + pre + i.toString()).attr("src", nowpath)
+        $("#" + pre + i.toString()).attr("title", obj[pre + i.toString() + "_title"].toString())
+        $("#" + pre + i.toString() + "_id").attr("href", "../movie/" + obj[pre + i.toString() + "_id"].toString())
         $("#" + pre + i.toString() + "_title").text(obj[pre + i.toString() + "_title"].toString())
         $("#" + pre + i.toString() + "_score").text("豆瓣评分：" + obj[pre + i.toString() + "_score"].toString())
         $("#" + pre + i.toString() + "_type").text("类型：" + obj[pre + i.toString() + "_type"].toString())

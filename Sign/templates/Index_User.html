@@ -17,7 +17,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{index}}">
+                    <a class="navbar-brand">
                         <img src="{{user_url}}" alt="Brand" class="img-circle img-responsive">
                     </a>
                 </div>
@@ -26,55 +26,7 @@
                         <li>
                             <p class="navbar-text text-left" id="user">{{now_user}}</p>
                         </li>
-                        <li><a href="{{index}}" id="index">主页</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">国家/地区<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="movie_list?tag=大陆电影" class="btn btn-link" role="button" onclick="getMovieList(this)">大陆电影</a></li>
-                                <li><a href="movie_list?tag=美国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">美国电影</a></li>
-                                <li><a href="movie_list?tag=香港电影" class="btn btn-link" role="button" onclick="getMovieList(this)">香港电影</a></li>
-                                <li><a href="movie_list?tag=台湾电影" class="btn btn-link" role="button" onclick="getMovieList(this)">台湾电影</a></li>
-                                <li><a href="movie_list?tag=日本电影" class="btn btn-link" role="button" onclick="getMovieList(this)">日本电影</a></li>
-                                <li><a href="movie_list?tag=韩国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">韩国电影</a></li>
-                                <li><a href="movie_list?tag=印度电影" class="btn btn-link" role="button" onclick="getMovieList(this)">印度电影</a></li>
-                                <li><a href="movie_list?tag=泰国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">泰国电影</a></li>
-                                <li><a href="movie_list?tag=英国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">英国电影</a></li>
-                                <li><a href="movie_list?tag=法国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">法国电影</a></li>
-                                <li><a href="movie_list?tag=德国电影" class="btn btn-link" role="button" onclick="getMovieList(this)">德国电影</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">类型<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="movie_list?tag=爱情" class="btn btn-link" role="button" onclick="getMovieList(this)">爱情</a></li>
-                                <li><a href="movie_list?tag=暴力" class="btn btn-link" role="button" onclick="getMovieList(this)">暴力</a></li>
-                                <li><a href="movie_list?tag=传记" class="btn btn-link" role="button" onclick="getMovieList(this)">传记</a></li>
-                                <li><a href="movie_list?tag=动作" class="btn btn-link" role="button" onclick="getMovieList(this)">动作</a></li>
-                                <li><a href="movie_list?tag=犯罪" class="btn btn-link" role="button" onclick="getMovieList(this)">犯罪</a></li>
-                                <li><a href="movie_list?tag=家庭" class="btn btn-link" role="button" onclick="getMovieList(this)">家庭</a></li>
-                                <li><a href="movie_list?tag=剧情" class="btn btn-link" role="button" onclick="getMovieList(this)">剧情</a></li>
-                                <li><a href="movie_list?tag=科幻" class="btn btn-link" role="button" onclick="getMovieList(this)">科幻</a></li>
-                                <li><a href="movie_list?tag=恐怖" class="btn btn-link" role="button" onclick="getMovieList(this)">恐怖</a></li>
-                                <li><a href="movie_list?tag=历史" class="btn btn-link" role="button" onclick="getMovieList(this)">历史</a></li>
-                                <li><a href="movie_list?tag=励志" class="btn btn-link" role="button" onclick="getMovieList(this)">励志</a></li>
-                                <li><a href="movie_list?tag=魔幻" class="btn btn-link" role="button" onclick="getMovieList(this)">魔幻</a></li>
-                                <li><a href="movie_list?tag=女性" class="btn btn-link" role="button" onclick="getMovieList(this)">女性</a></li>
-                                <li><a href="movie_list?tag=青春" class="btn btn-link" role="button" onclick="getMovieList(this)">青春</a></li>
-                                <li><a href="movie_list?tag=情色" class="btn btn-link" role="button" onclick="getMovieList(this)">情色</a></li>
-                                <li><a href="movie_list?tag=文艺" class="btn btn-link" role="button" onclick="getMovieList(this)">文艺</a></li>
-                                <li><a href="movie_list?tag=喜剧" class="btn btn-link" role="button" onclick="getMovieList(this)">喜剧</a></li>
-                                <li><a href="movie_list?tag=悬疑" class="btn btn-link" role="button" onclick="getMovieList(this)">悬疑</a></li>
-                                <li><a href="movie_list?tag=音乐" class="btn btn-link" role="button" onclick="getMovieList(this)">音乐</a></li>
-                                <li><a href="movie_list?tag=战争" class="btn btn-link" role="button" onclick="getMovieList(this)">战争</a></li>
-                                <li><a href="movie_list?tag=黑帮" class="btn btn-link" role="button" onclick="getMovieList(this)">黑帮</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="movie_list?tag=经典" class="btn btn-link" role="button" onclick="getMovieList(this)">经典</a></li>
-                                <li><a href="movie_list?tag=冷门佳片" class="btn btn-link" role="button" onclick="getMovieList(this)">冷门佳片</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p class="navbar-text text-center" id="title"><strong>老电影推荐站</strong></p>
-                        </li>
+                        {% include 'Navigation.html' %}
                         <li>
                             <a type="button" href="{{index}}" class="tips" onclick="postLogOut()">注销</a>
                         </li>
@@ -94,7 +46,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_1_title">{{movie_show_1_title}}</strong><br>
+                            <a href="../movie/{{movie_show_1_id}}" id="movie_show_1_id"><strong class="info" id="movie_show_1_title">{{movie_show_1_title}}</strong></a><br>
                             <strong class="info" id="movie_show_1_score">豆瓣评分：{{movie_show_1_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_1_type">类型：{{movie_show_1_type}}</p>
@@ -109,7 +61,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_2_title">{{movie_show_2_title}}</strong><br>
+                            <a href="../movie/{{movie_show_2_id}}" id="movie_show_2_id"><strong class="info" id="movie_show_2_title">{{movie_show_2_title}}</strong></a><br>
                             <strong class="info" id="movie_show_2_score">豆瓣评分：{{movie_show_2_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_2_type">类型：{{movie_show_2_type}}</p>
@@ -124,7 +76,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_3_title">{{movie_show_3_title}}</strong><br>
+                            <a href="../movie/{{movie_show_3_id}}" id="movie_show_3_id"><strong class="info" id="movie_show_3_title">{{movie_show_3_title}}</strong></a><br>
                             <strong class="info" id="movie_show_3_score">豆瓣评分：{{movie_show_3_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_3_type">类型：{{movie_show_3_type}}</p>
@@ -139,7 +91,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_4_title">{{movie_show_4_title}}</strong><br>
+                            <a href="../movie/{{movie_show_4_id}}" id="movie_show_4_id"><strong class="info" id="movie_show_4_title">{{movie_show_4_title}}</strong></a><br>
                             <strong class="info" id="movie_show_4_score">豆瓣评分：{{movie_show_4_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_4_type">类型：{{movie_show_4_type}}</p>
@@ -154,7 +106,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_5_title">{{movie_show_5_title}}</strong><br>
+                            <a href="../movie/{{movie_show_5_id}}" id="movie_show_5_id"><strong class="info" id="movie_show_5_title">{{movie_show_5_title}}</strong></a><br>
                             <strong class="info" id="movie_show_5_score">豆瓣评分：{{movie_show_5_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_5_type">类型：{{movie_show_5_type}}</p>
@@ -169,7 +121,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_6_title">{{movie_show_6_title}}</strong><br>
+                            <a href="../movie/{{movie_show_6_id}}" id="movie_show_6_id"><strong class="info" id="movie_show_6_title">{{movie_show_6_title}}</strong></a><br>
                             <strong class="info" id="movie_show_6_score">豆瓣评分：{{movie_show_6_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_6_type">类型：{{movie_show_6_type}}</p>
@@ -186,7 +138,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_7_title">{{movie_show_7_title}}</strong><br>
+                            <a href="../movie/{{movie_show_7_id}}" id="movie_show_7_id"><strong class="info" id="movie_show_7_title">{{movie_show_7_title}}</strong></a><br>
                             <strong class="info" id="movie_show_7_score">豆瓣评分：{{movie_show_7_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_7_type">类型：{{movie_show_7_type}}</p>
@@ -201,7 +153,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_8_title">{{movie_show_8_title}}</strong><br>
+                            <a href="../movie/{{movie_show_8_id}}" id="movie_show_8_id"><strong class="info" id="movie_show_8_title">{{movie_show_8_title}}</strong></a><br>
                             <strong class="info" id="movie_show_8_score">豆瓣评分：{{movie_show_8_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_8_type">类型：{{movie_show_8_type}}</p>
@@ -216,7 +168,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_9_title">{{movie_show_9_title}}</strong><br>
+                            <a href="../movie/{{movie_show_9_id}}" id="movie_show_9_id"><strong class="info" id="movie_show_9_title">{{movie_show_9_title}}</strong></a><br>
                             <strong class="info" id="movie_show_9_score">豆瓣评分：{{movie_show_9_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_9_type">类型：{{movie_show_9_type}}</p>
@@ -231,7 +183,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_10_title">{{movie_show_10_title}}</strong><br>
+                            <a href="../movie/{{movie_show_10_id}}" id="movie_show_10_id"><strong class="info" id="movie_show_10_title">{{movie_show_10_title}}</strong></a><br>
                             <strong class="info" id="movie_show_10_score">豆瓣评分：{{movie_show_10_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_10_type" class>类型：{{movie_show_10_type}}</p>
@@ -246,7 +198,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_11_title">{{movie_show_11_title}}</strong><br>
+                            <a href="../movie/{{movie_show_11_id}}" id="movie_show_11_id"><strong class="info" id="movie_show_11_title">{{movie_show_11_title}}</strong></a><br>
                             <strong class="info" id="movie_show_11_score">豆瓣评分：{{movie_show_11_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_11_type">类型：{{movie_show_11_type}}</p>
@@ -261,7 +213,7 @@
                             <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
                             <button class="btn btn-warning btn-sm">不喜欢</button>
                             <br>
-                            <strong class="info" id="movie_show_12_title">{{movie_show_12_title}}</strong><br>
+                            <a href="../movie/{{movie_show_12_id}}" id="movie_show_12_id"><strong class="info" id="movie_show_12_title">{{movie_show_12_title}}</strong></a><br>
                             <strong class="info" id="movie_show_12_score">豆瓣评分：{{movie_show_12_score}}</strong><br>
                             <br>
                             <p class="info_2" id="movie_show_12_type">类型：{{movie_show_12_type}}</p>

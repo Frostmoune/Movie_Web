@@ -1,0 +1,12 @@
+.container .row > div > p{
+    color:gray;
+    font-size:14px;
+}
+
+.container .row > div > p > span{
+    color:rgb(0, 0, 0);
+}
+
+.container .row > div > p > a{
+    cursor: pointer;
+}

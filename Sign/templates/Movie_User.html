@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Movie</title>
+        <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/another.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/index.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/movie.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/index_user.js"></script>
+        <script src="../static/js/another.js"></script>
+        <script src="../static/js/movie.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        <img alt="Brand" class="img-circle img-responsive" id="user_image">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <p class="navbar-text text-left" id="user"></p>
+                        </li>
+                        {% include 'Navigation.html' %}
+                        <li>
+                            <a type="button" id="log_out" class="tips" onclick="postLogOut()">注销</a>
+                        </li>
+                        <li>
+                            <a id="signUp" class="tips">注册</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="center4">
+            <div row="page-header">
+                <p class="text-center"><h2 id="titles"></h2></p>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 col-md-3">
+                    <div class="thumbnail">
+                        <img alt="movie" id="movie_show">
+                    </div>
+                    <div class="caption">
+                        <button class="btn btn-success btn-lg">我喜欢</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-warning btn-lg">不喜欢</button>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-md-3" id="movie_info">
+                </div>
+            </div>
+        </div>
+        <script>
+            var infomation = {{ Info|safe }};
+            var other = {{ Other|safe }};
+            var items = {{ Items|safe }};
+            var texts = {{ Text|safe }};
+            $('#user').text(other['now_user']);
+            $('#user_image').attr("src", other['user_url']);
+            $('#signUp').attr("href", other['sign_up']);
+            $('#movie_show').attr("src", other['image_id']);
+            $('#movie_show').attr("title", other['title']);
+            $('#titles').text(other['title']);
+            score = $('<p></p>').attr("id","score").text("评分：");
+            score.append($('<span></span>').text(infomation['score']));
+            $('#movie_info').prepend(score);
+            for(var i=0;i<items.length;++i){
+                if(infomation[items[i]]!="无"){
+                    now_tag = $('<p></p>').attr("id",items[i]).text(texts[i] + "：");
+                    now_info = infomation[items[i]].split("/");
+                    for(var j=0;j<now_info.length;++j){
+                        now_text = now_info[j];
+                        if(j<now_info.length-1){
+                            now_text += "/";
+                        }
+                        if(j<3){
+                            now_tag.append($('<span></span>').text(now_text));
+                        }
+                        else{
+                            now_tag.append($('<span style="display:none;"></span>').text(now_text));
+                        }
+                    }
+                    if(now_info.length>3){
+                        now_tag.append($('<a onclick="moreInfo(this)"></a>').text("更多..."));
+                    }
+                    $('#movie_info').append(now_tag);
+                }
+            }
+        </script>
+    </body>
+</html>
