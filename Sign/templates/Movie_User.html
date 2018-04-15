@@ -57,10 +57,12 @@
             </div>
         </div>
         <script>
+            var info_tags = {'导演':'diretor','编剧':'screenwriter','类型':'types',
+            '主演':'actor','官方网站':'website','制片国家/地区':'country',
+            '语言':'language','上映日期':'date','片长':'length',
+            '又名':'name','imdb链接':'imdb','集数':'episodes','单集片长':'length_episodes'};
             var infomation = {{ Info|safe }};
             var other = {{ Other|safe }};
-            var items = {{ Items|safe }};
-            var texts = {{ Text|safe }};
             $('#user').text(other['now_user']);
             $('#user_image').attr("src", other['user_url']);
             $('#signUp').attr("href", other['sign_up']);
@@ -70,10 +72,10 @@
             score = $('<p></p>').attr("id","score").text("评分：");
             score.append($('<span></span>').text(infomation['score']));
             $('#movie_info').prepend(score);
-            for(var i=0;i<items.length;++i){
-                if(infomation[items[i]]!="无"){
-                    now_tag = $('<p></p>').attr("id",items[i]).text(texts[i] + "：");
-                    now_info = infomation[items[i]].split("/");
+            for(var key in info_tags){
+                if(infomation[info_tags[key]]!="无"){
+                    now_tag = $('<p></p>').attr("id",info_tags[key]).text(key + "：");
+                    now_info = infomation[info_tags[key]].split("/");
                     for(var j=0;j<now_info.length;++j){
                         now_text = now_info[j];
                         if(j<now_info.length-1){

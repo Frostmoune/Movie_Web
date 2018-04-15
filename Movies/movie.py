@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import JsonResponse
 from .models import Movie
+from collections import OrderedDict
 import json
 import random
 import os
@@ -24,6 +25,8 @@ info_tags = {'评分':'score','导演':'diretor','编剧':'screenwriter','类型
             '主演':'actor','官方网站':'website','制片国家/地区':'country',
             '语言':'language','上映日期':'date','片长':'length',
             '又名':'name','imdb链接':'imdb','集数':'episodes','单集片长':'length_episodes'}
+
+order_tags = OrderedDict(info_tags)
 
 # 得到image_id地址，只在下面的loadAllInfo()中使用
 def getPath(num):
@@ -119,11 +122,6 @@ def pullMovieList(request):
         print(e)
         return render_to_response(None)
 
-info_tags = {'评分':'score','导演':'diretor','编剧':'screenwriter','类型':'types',
-            '主演':'actor','官方网站':'website','制片国家/地区':'country',
-            '语言':'language','上映日期':'date','片长':'length',
-            '又名':'name','imdb链接':'imdb','集数':'episodes','单集片长':'length_episodes'}
-
 def showPerMovie(request, id):
     now_movie = Movie.objects.filter(image_id__exact = id)[0]
     other_info = {'index':'/index/',
@@ -152,8 +150,6 @@ def showPerMovie(request, id):
     return_dict = {
         'Info':json.dumps(movie),
         'Other':json.dumps(other_info),
-        'Text':json.dumps(list(info_tags.keys())[1:]),
-        'Items':json.dumps(list(info_tags.values())[1:]),
     }
     if str(request.user)=="AnonymousUser":
         return render(request, 'Movie.html', return_dict)
