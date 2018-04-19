@@ -1,7 +1,7 @@
 #center{
     left:50%;
     top:100px;
-    width:400px;
+    width:350px;
     height:600px;
     overflow: auto;
     position: absolute;
@@ -10,7 +10,7 @@
     background: rgb(239, 248, 233);
     display:inline-block; 
     width:fill-available;
-     transform: translate(-50%,0%);
+    transform: translate(-50%,0%);
 }
 
 #center2{

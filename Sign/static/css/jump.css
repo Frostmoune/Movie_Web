@@ -1,8 +1,8 @@
 #center6{
     left:50%;
     top:100px;
-    width:400px;
-    height:600px;
+    width:450px;
+    height:400px;
     overflow: auto;
     position: absolute;
     border-radius: 15px;
@@ -40,10 +40,10 @@
     position: relative;
 }
 
-.container #center7 > button{
-    font-size: 22px;
-    color:rgb(250, 9, 9);
-    background-color:rgb(235, 235, 247);
+.container-fluid .row .text-center{
+    font-size: 35px;
+    font-weight: bold;
+    color:black;
 }
 
 .container-fluid .row #center7{
