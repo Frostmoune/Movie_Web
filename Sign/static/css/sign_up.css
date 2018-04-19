@@ -1,8 +1,8 @@
 #center{
-    left:39%;
-    top:25%;
-    width:20%;
-    height:calc(84% - 100px);
+    left:50%;
+    top:100px;
+    width:400px;
+    height:600px;
     overflow: auto;
     position: absolute;
     border-radius: 15px;
@@ -10,6 +10,7 @@
     background: rgb(239, 248, 233);
     display:inline-block; 
     width:fill-available;
+     transform: translate(-50%,0%);
 }
 
 #center2{
