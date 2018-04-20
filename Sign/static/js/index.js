@@ -17,7 +17,8 @@ function changeMovieList(obj){
 }
 
 // 发送请求到后端，请求后端发送电影信息，此函数用于跳转后的页面（页面每10s发送一个请求）
-window.onload=setInterval(function(){
+
+function getMovieList(){
     nowtag = document.title
     if(nowtag=="Index"){
         $.ajax({
@@ -49,5 +50,7 @@ window.onload=setInterval(function(){
             }
         });
     }
-},10000) // 10000表示10000毫秒
+}
+
+window.onload=setInterval(getMovieList,60000); // 10000表示10000毫秒
 

@@ -28,7 +28,8 @@
     -webkit-box-shadow: 0 0 5px #ccc;
     box-shadow: 0 0 5px #ccc;
 }
-.Input_Box>textarea {
+
+.Input_Box > textarea {
     width: 485px;
     height: 111px;
     padding: 5px;
@@ -40,6 +41,7 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+
 .Input_Foot {
     width: 100%;
     height: 35px;
@@ -50,6 +52,7 @@
     border-radius: 0 0 5px 5px;
     position: absolute;
 }
+
 .postBtn {
     float: right;
     font: 13px "微软雅黑", Arial, Helvetica, sans-serif;
@@ -61,10 +64,12 @@
     -webkit-border-radius: 0 0 5px 0;
     border-radius: 0 0 5px 0;
 }
+
 .postBtn:hover {
     color: #333;
     background-color: #efefef;
 }
+
 .postBtn:active {
     padding: 10px 20px 6px 20px;
 }
