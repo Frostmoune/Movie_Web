@@ -27,6 +27,7 @@
     -moz-box-shadow: 0 0 5px #ccc;
     -webkit-box-shadow: 0 0 5px #ccc;
     box-shadow: 0 0 5px #ccc;
+    display: inline-block;
 }
 
 .Input_Box > textarea {
@@ -51,6 +52,11 @@
     -webkit-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
     position: absolute;
+}
+
+.container .row .btn-warning{
+    position: relative;
+    left:80px;
 }
 
 .postBtn {

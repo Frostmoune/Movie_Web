@@ -48,8 +48,7 @@
                     </div>
                     <div class="caption">
                         <button class="btn btn-success btn-lg">我喜欢</button>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-warning btn-lg">不喜欢</button>
+                        <button class="btn btn-warning btn-lg">我看过</button>
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-3" id="movie_info">
@@ -73,6 +72,7 @@
             '又名':'name','imdb链接':'imdb','集数':'episodes','单集片长':'length_episodes'};
             var infomation = {{ Info|safe }};
             var other = {{ Other|safe }};
+            $('#index').attr("href", other['index']);
             $('#user').text(other['now_user']);
             $('#user_image').attr("src", other['user_url']);
             $('#signUp').attr("href", other['sign_up']);
