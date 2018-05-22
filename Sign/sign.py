@@ -74,3 +74,8 @@ def doLogOut(request):
         auth.logout(request)
         return JsonResponse({'logOut':True})
     return JsonResponse({'logOut':False})
+
+# 用户页面的视图
+def user(request):
+    user_contents = {"now_title":"User"}
+    return render(request,'User.html',dict(user_contents,**user.contents))

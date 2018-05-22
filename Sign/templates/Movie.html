@@ -58,11 +58,16 @@
         </div>
         <br>
         <div class="container" id = "center6">
-            <div class = "comment">
-                <hr>
-                <p class="comment-name" id="comment_name"><h3>{{comment_name}}:</h3></p>
-                <p class="comment-message" id="comment_message"><h5>    {{comment_message}}</h5></p>
-            </div>
+            <script>
+                var comment = {{Comment|safe}};
+                var comment_number = {{Commen_num|safe}};
+                for (var key = 0 ;key < comment_number;key++){
+                    var line = "<hr>";
+                    var comment_name = "<h3>" + comment[key].name + "</h3>";
+                    var comment_text = "<h5>    " + comment[key].text + "</h5>";
+                    document.getElementById("comment_zone").innerHTML = line + comment_name + comment_text;
+                }
+            </script>
         </div>
         <script>
             var info_tags = {'导演':'diretor','编剧':'screenwriter','类型':'types',

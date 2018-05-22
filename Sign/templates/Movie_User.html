@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <p class="navbar-text text-left" id="user"></p>
+                            <a class="tips" id="user"></a>
                         </li>
                         {% include 'Navigation.html' %}
                         <li>
@@ -47,8 +47,8 @@
                         <img alt="movie" id="movie_show">
                     </div>
                     <div class="caption">
-                        <button class="btn btn-success btn-lg">我喜欢</button>
-                        <button class="btn btn-warning btn-lg">我看过</button>
+                        <button class="btn btn-success btn-sm" onclick="post_movieLike()">我喜欢</button>&nbsp;
+                        <button class="btn btn-warning btn-sm" onclick="post_movieSeen()">我看过</button>
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-3" id="movie_info">
@@ -61,17 +61,25 @@
                 <p class="text-center"><h3>评论区</h3></p>
             </div>
             <div class="Input_Box">
-                <textarea class="Input_text"></textarea>
-                <div class="Input_Foot"> <a class="postBtn">确定</a> </div>
+                <textarea class="Input_text" id = "{{post_comment}}"></textarea>
+                <div class="Input_Foot"> 
+                    <button type="button" class="btn btn-primary btn-block" id="post up" onclick="postComment()">确定</button> 
+                </div>
             </div>
         </div>
         <br>
         <div class="container" id = "center6">
-            <div class = "comment">
-                <hr>
-                <p class="comment-name" id="comment_name"><h3>{{comment_name}}:</h3></p>
-                <p class="comment-message" id="comment_message"><h5>    {{comment_message}}</h5></p>
-            </div>
+            <div id = "comment_zone"></div>>
+            <script>
+                var comment = {{Comment|safe}};
+                var comment_number = {{Commen_num|safe}};
+                for (var key = 0 ;key < comment_number;key++){
+                    var line = "<hr>";
+                    var comment_name = "<h3>" + comment[key].name + "</h3>";
+                    var comment_text = "<h5>    " + comment[key].text + "</h5>";
+                    document.getElementById("comment_zone").innerHTML = line + comment_name + comment_text;
+                }
+            </script>
         </div>
         <script>
             var info_tags = {'导演':'diretor','编剧':'screenwriter','类型':'types',

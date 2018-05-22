@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>User</title>
+        <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/another.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/index.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/movie.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/index_user.js"></script>
+        <script src="../static/js/another.js"></script>
+        <script src="../static/js/movie.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        <img alt="Brand" class="img-circle img-responsive" id="user_image">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <p class="navbar-text text-left" id="user"></p>
+                        </li>
+                        {% include 'Navigation.html' %}
+                        <li>
+                            <a type="button" id="log_out" class="tips" onclick="postLogOut()">注销</a>
+                        </li>
+                        <li>
+                            <a id="signUp" class="tips">注册</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="center4">
+            <h1 class="" id="user">{{now_user}}</h1>
+            <br>
+            <div id = "Seen_zone">
+                <h3>我看过的</h3>
+                <div id = "Seen_Movie"></div>
+            </div>
+            <script>
+                var seen_movie = {{Seen_movie|safe}};
+                for (var key = 0;key < seen_movie.length;key++){
+                    if (key % 4 == 0)
+                        document.getElementById("Seen_Movie").innerHTML += '<div class="row">';
+                    var output = '';
+                    output+='<div class="col-sm-4 col-md-2">';
+                    output+='    <div class="thumbnail">';
+                    output+='        <a href="../movie/'+ seen_movie[key].id +'"><img src="../static/items/'+ seen_movie[key].id +'" alt="'+ seen_movie[key].id +'" title="'+ seen_movie[key].id +'">';
+                    output+='        <a href="../movie/{{seen_move_'+ seen_movie[key].id +'_id}}"><strong>{{seen_move_'+ key.toString() +'_title}}</strong></a><br>';
+                    output+='        </div>';
+                    output+='    </div>';
+                    output+='</div>';
+                    document.getElementById("Seen_Movie").innerHTML += output;
+                }
+            </script>
+            <br>
+            <div id = "Favourite_zone">
+                <h3>我喜欢看的</h3>
+                <div id = "Like_Movie"></div>
+            </div>
+            <script>
+                var like_movie = {{Like_moive|safe}};
+                for (var key = 0;key < like_movie_num;key++){
+                    if (key % 4 == 0)
+                        document.getElementById("Like_Movie").innerHTML += '<div class="row">';
+                    var output = '';
+                    output+='<div class="col-sm-4 col-md-2">';
+                    output+='    <div class="thumbnail">';
+                    output+='        <a href="../movie/{{like_move_'+ key.toString() +'_id}}"><img src="../static/items/{{seen_move_'+ key.toString() +'_id}}" alt="{{like_move_'+ key.toString() +'_id}}" title="{{like_move_'+ key.toString() +'_id}}">';
+                    output+='        <a href="../movie/{{like_move_'+ key.toString() +'_id}}"><strong>{{like_move_'+ key.toString() +'_title}}</strong></a><br>';
+                    output+='        </div>';
+                    output+='    </div>';
+                    output+='</div>';
+                    document.getElementById("Like_Movie").innerHTML += output;
+                }
+            </script>            
+        </div>
+    </body>
+</html>

@@ -40,3 +40,4 @@ def index(request):
 def signUp(request):
     signup_contents = {"now_title":"Sign_up","user_id":"Userid","password1":"Password","email":"Email","password2":"ConfirmPassword"}
     return render(request,'Sign_up.html',dict(signup_contents,**signmovie.contents))
+

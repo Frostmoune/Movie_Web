@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <p class="navbar-text text-left" id="user">{{now_user}}</p>
+                            <a class="tips" id="user" href="/user/{{now_user}}">{{now_user}}</p>
                         </li>
                         {% include 'Navigation.html' %}
                         <li>
@@ -49,8 +49,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_1_id}}" id="movie_show_1_id"><img src="../static/items/{{movie_show_1}}" alt="movie_1" title="{{movie_show_1_title}}" id="movie_show_1">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_1_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_1_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_1_id}}" id="movie_show_1_id"><strong class="info" id="movie_show_1_title">{{movie_show_1_title}}</strong></a><br>
                             <strong class="info" id="movie_show_1_score">豆瓣评分：{{movie_show_1_score}}</strong><br>
@@ -64,8 +64,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_2_id}}" id="movie_show_2_id"><img src="../static/items/{{movie_show_2}}" alt="movie_2" title="{{movie_show_2_title}}" id="movie_show_2">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_2_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_2_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_2_id}}" id="movie_show_2_id"><strong class="info" id="movie_show_2_title">{{movie_show_2_title}}</strong></a><br>
                             <strong class="info" id="movie_show_2_score">豆瓣评分：{{movie_show_2_score}}</strong><br>
@@ -79,8 +79,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_3_id}}" id="movie_show_3_id"><img src="../static/items/{{movie_show_3}}" alt="movie_3" title="{{movie_show_3_title}}" id="movie_show_3">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_3_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_3_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_3_id}}" id="movie_show_3_id"><strong class="info" id="movie_show_3_title">{{movie_show_3_title}}</strong></a><br>
                             <strong class="info" id="movie_show_3_score">豆瓣评分：{{movie_show_3_score}}</strong><br>
@@ -94,8 +94,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_4_id}}" id="movie_show_4_id"><img src="../static/items/{{movie_show_4}}" alt="movie_4" title="{{movie_show_4_title}}" id="movie_show_4">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_4_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_4_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_4_id}}" id="movie_show_4_id"><strong class="info" id="movie_show_4_title">{{movie_show_4_title}}</strong></a><br>
                             <strong class="info" id="movie_show_4_score">豆瓣评分：{{movie_show_4_score}}</strong><br>
@@ -109,8 +109,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_5_id}}" id="movie_show_5_id"><img src="../static/items/{{movie_show_5}}" alt="movie_5" title="{{movie_show_5_title}}" id="movie_show_5">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_5_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_5_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_5_id}}" id="movie_show_5_id"><strong class="info" id="movie_show_5_title">{{movie_show_5_title}}</strong></a><br>
                             <strong class="info" id="movie_show_5_score">豆瓣评分：{{movie_show_5_score}}</strong><br>
@@ -124,8 +124,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_6_id}}" id="movie_show_6_id"><img src="../static/items/{{movie_show_6}}" alt="movie_6" title="{{movie_show_6_title}}" id="movie_show_6">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_6_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_6_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_6_id}}" id="movie_show_6_id"><strong class="info" id="movie_show_6_title">{{movie_show_6_title}}</strong></a><br>
                             <strong class="info" id="movie_show_6_score">豆瓣评分：{{movie_show_6_score}}</strong><br>
@@ -141,8 +141,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_7_id}}" id="movie_show_7_id"><img src="../static/items/{{movie_show_7}}" alt="movie_7" title="{{movie_show_7_title}}" id="movie_show_7">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_7_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_7_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_7_id}}" id="movie_show_7_id"><strong class="info" id="movie_show_7_title">{{movie_show_7_title}}</strong></a><br>
                             <strong class="info" id="movie_show_7_score">豆瓣评分：{{movie_show_7_score}}</strong><br>
@@ -156,8 +156,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_8_id}}" id="movie_show_8_id"><img src="../static/items/{{movie_show_8}}" alt="movie_8" title="{{movie_show_8_title}}" id="movie_show_8">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_8_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_8_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_8_id}}" id="movie_show_8_id"><strong class="info" id="movie_show_8_title">{{movie_show_8_title}}</strong></a><br>
                             <strong class="info" id="movie_show_8_score">豆瓣评分：{{movie_show_8_score}}</strong><br>
@@ -171,8 +171,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_9_id}}" id="movie_show_9_id"><img src="../static/items/{{movie_show_9}}" alt="movie_9" title="{{movie_show_9_title}}" id="movie_show_9">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_9_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_9_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_9_id}}" id="movie_show_9_id"><strong class="info" id="movie_show_9_title">{{movie_show_9_title}}</strong></a><br>
                             <strong class="info" id="movie_show_9_score">豆瓣评分：{{movie_show_9_score}}</strong><br>
@@ -186,8 +186,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_10_id}}" id="movie_show_10_id"><img src="../static/items/{{movie_show_10}}" alt="movie_10" title="{{movie_show_10_title}}" id="movie_show_10">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_10_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_10_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_10_id}}" id="movie_show_10_id"><strong class="info" id="movie_show_10_title">{{movie_show_10_title}}</strong></a><br>
                             <strong class="info" id="movie_show_10_score">豆瓣评分：{{movie_show_10_score}}</strong><br>
@@ -201,8 +201,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_11_id}}" id="movie_show_11_id"><img src="../static/items/{{movie_show_11}}" alt="movie_11" title="{{movie_show_11_title}}" id="movie_show_11">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_11_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_11_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_11_id}}" id="movie_show_11_id"><strong class="info" id="movie_show_11_title">{{movie_show_11_title}}</strong></a><br>
                             <strong class="info" id="movie_show_11_score">豆瓣评分：{{movie_show_11_score}}</strong><br>
@@ -216,8 +216,8 @@
                     <div class="thumbnail">
                         <a href="../movie/{{movie_show_12_id}}" id="movie_show_12_id"><img src="../static/items/{{movie_show_12}}" alt="movie_12" title="{{movie_show_12_title}}" id="movie_show_12">
                         <div class="caption">
-                            <button class="btn btn-success btn-sm">我喜欢</button>&nbsp;
-                            <button class="btn btn-warning btn-sm">我看过</button>
+                            <button class="btn btn-success btn-sm" onclick="postLike({{movie_show_12_id}})">我喜欢</button>&nbsp;
+                            <button class="btn btn-warning btn-sm" onclick="postSeen({{movie_show_12_id}})">我看过</button>
                             <br>
                             <a href="../movie/{{movie_show_12_id}}" id="movie_show_12_id"><strong class="info" id="movie_show_12_title">{{movie_show_12_title}}</strong></a><br>
                             <strong class="info" id="movie_show_12_score">豆瓣评分：{{movie_show_12_score}}</strong><br>
