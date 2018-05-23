@@ -54,7 +54,7 @@ def search(request):
         n['score'] = m.score
         n['type'] = m.types
         n['country'] = m.country
-        if m.title not in check_same:
-            movie_list.append(n)
-            check_same.append(m.title)
+        #if m.title not in check_same:
+        movie_list.append(n)
+            #check_same.append(m.title)
     return render(request, 'search.html', {'movie_list': movie_list})
