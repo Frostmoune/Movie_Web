@@ -18,5 +18,5 @@ class Movie(models.Model):
     imdb = models.TextField() # imdb链接
     episodes = models.TextField() # 集数
     length_episodes = models.TextField() # 每集长度
-    search_tag = models.CharField(max_length = 5) # 用于查询（根据类型）
+    search_tag = models.TextField(default = "Null") # 用于查询（根据类型）
     image_id = models.CharField(max_length = 7) # 对应的海报id

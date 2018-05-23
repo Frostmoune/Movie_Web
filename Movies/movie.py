@@ -49,31 +49,39 @@ def loadAllInfo():
         for info in nowtxt:
             if info=="" or len(info)==0 or str(info).isspace():
                 break
+            flag = 0
             now_info = {}
-            now_info['title'] = info.split('\n',1)[0]
-            for y in info_tags:
-                pattern = re.compile(y + '.*?\n')
-                nowtxt = re.findall(pattern, info)
-                if len(nowtxt)>0:
-                    nowtxt = nowtxt[0].split(":", 1)
-                    if len(nowtxt)>=2:
-                        nowtxt = nowtxt[1]
+            now_title = info.split('\n',1)[0]
+            now_obj = Movie.objects.filter(title__exact = now_title)
+            if len(now_obj)!=0:
+                flag = 1
+            if flag == 0:
+                now_info['title'] = info.split('\n',1)[0]
+                for y in info_tags:
+                    pattern = re.compile(y + '.*?\n')
+                    nowtxt = re.findall(pattern, info)
+                    if len(nowtxt)>0:
+                        nowtxt = nowtxt[0].split(":", 1)
                         if len(nowtxt)>=2:
-                            nowtxt = nowtxt[1:-1]
-                            if len(nowtxt)==0:
-                                now_info[info_tags[y]] = "无"
+                            nowtxt = nowtxt[1]
+                            if len(nowtxt)>=2:
+                                nowtxt = nowtxt[1:-1]
+                                if len(nowtxt)==0:
+                                    now_info[info_tags[y]] = "无"
+                                else:
+                                    now_info[info_tags[y]] = nowtxt
                             else:
-                                now_info[info_tags[y]] = nowtxt
+                                now_info[info_tags[y]] = "无"
                         else:
                             now_info[info_tags[y]] = "无"
                     else:
                         now_info[info_tags[y]] = "无"
-                else:
-                    now_info[info_tags[y]] = "无"
-            now_info['search_tag'] = x
-            now_info['image_id'] = getPath(num)
-            if Movie.objects.get_or_create(**now_info)[1]==True:
-                true_num += 1
+                now_info['search_tag'] = x
+                now_info['image_id'] = getPath(num)
+                if Movie.objects.get_or_create(**now_info)[1]==True:
+                    true_num += 1
+            else:
+                now_obj[0].search_tag += ", " + x
             num += 1
         print("Save %s finished. The total num is %d. The True number is %d."%(x, num-1, true_num-1))
   
@@ -90,18 +98,18 @@ def pullMovieList(request):
             is_change = '1'
             now_movie['now_title'] = now_tag
         is_vis = [0 for i in range(550)] # 用于判断是否重复
-        all_movies = Movie.objects.filter(search_tag__exact = now_tag)
+        all_movies = Movie.objects.filter(search_tag__contains = now_tag)
         for i in range(12):
             if now_tag!="All":
                 now_type = now_tag # 若不为All，说明已经确定了类型
             else:
                 now_type = tags[random.randint(0,34)] # 否则，在35种类型中随机选一种
-                all_movies = Movie.objects.filter(search_tag__exact = now_type) # 找到所有符合对应类型的电影
+                all_movies = Movie.objects.filter(search_tag__contains = now_type) # 找到所有符合对应类型的电影
             length = len(all_movies)
-            now_num = random.randint(0,length-1)
+            now_num = random.randint(0, length-1)
             now_movie_info = all_movies[now_num]
             while is_vis[now_num]==1 or now_movie_info.score=="无" or float(now_movie_info.score)<7: # 在相应的类型中找到评分大于7的电影
-                now_num = random.randint(0,length-1)
+                now_num = random.randint(0, length-1)
                 now_movie_info = all_movies[now_num]
             is_vis[now_num] = 1
             # 传递给前端页面用于渲染的信息

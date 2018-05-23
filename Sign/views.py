@@ -18,7 +18,7 @@ def index(request):
     now_movie['now_title'] = "Index"
     for i in range(12):
         now_type = signmovie.tags[random.randint(0,34)]
-        all_movies = Movie.objects.filter(search_tag__exact = now_type)
+        all_movies = Movie.objects.filter(search_tag__contains = now_type)
         length = len(all_movies)
         now_num = random.randint(0,length-1)
         now_movie_info = all_movies[now_num]
