@@ -35,4 +35,5 @@ urlpatterns = [
     path('movie/logOut', sign.doLogOut),
     path('movie/<str:id>', signmovie.showPerMovie),
     path('user/<str:user>',sign.user)
+    path('search/', signviews.search),
 ]
