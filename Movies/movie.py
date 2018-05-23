@@ -81,7 +81,10 @@ def loadAllInfo():
                 if Movie.objects.get_or_create(**now_info)[1]==True:
                     true_num += 1
             else:
-                now_obj[0].search_tag += ", " + x
+                now_tag = str(now_obj[0].search_tag)
+                if now_tag.find(x)==-1:
+                    now_obj[0].search_tag += ", " + x
+                    now_obj[0].save()
             num += 1
         print("Save %s finished. The total num is %d. The True number is %d."%(x, num-1, true_num-1))
   
