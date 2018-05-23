@@ -45,7 +45,7 @@ def search(request):
     search_key = request.GET.get('search_key')
     all_movie = Movie.objects.filter(title__icontains=search_key)
     movie_list = []
-    check_same = []
+    #check_same = []
     for m in all_movie:
         n={}
         n['picture']="poster/"+m.image_id+".jpg"
@@ -56,5 +56,5 @@ def search(request):
         n['country'] = m.country
         #if m.title not in check_same:
         movie_list.append(n)
-            #check_same.append(m.title)
+        #check_same.append(m.title)
     return render(request, 'search.html', {'movie_list': movie_list})
