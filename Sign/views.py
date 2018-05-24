@@ -18,7 +18,7 @@ def index(request):
     now_movie['now_title'] = "Index"
     for i in range(12):
         now_type = signmovie.tags[random.randint(0,34)]
-        all_movies = Movie.objects.filter(search_tag__contains = now_type)
+        all_movies = Movie.objects.filter(search_tag__exact = now_type)
         length = len(all_movies)
         now_num = random.randint(0,length-1)
         now_movie_info = all_movies[now_num]
@@ -41,3 +41,20 @@ def signUp(request):
     signup_contents = {"now_title":"Sign_up","user_id":"Userid","password1":"Password","email":"Email","password2":"ConfirmPassword"}
     return render(request,'Sign_up.html',dict(signup_contents,**signmovie.contents))
 
+def search(request):
+    search_key = request.GET.get('search_key')
+    all_movie = Movie.objects.filter(title__icontains=search_key)
+    movie_list = []
+    #check_same = []
+    for m in all_movie:
+        n={}
+        n['picture']="poster/"+m.image_id+".jpg"
+        n['id']=m.image_id
+        n['title']=m.title
+        n['score'] = m.score
+        n['type'] = m.types
+        n['country'] = m.country
+        #if m.title not in check_same:
+        movie_list.append(n)
+        #check_same.append(m.title)
+    return render(request, 'search.html', {'movie_list': movie_list})

@@ -41,6 +41,11 @@
                         </li>
                     </ul>
                 </div>
+                <form method="get" action="/search/">
+                    {% csrf_token %}
+                    <input type="search" placeholder="搜索" required="required" name="search_key">
+                    <button type="submit">搜索</button>
+                </form>
             </div>
         </nav>
         <div class="container" id="center4">
