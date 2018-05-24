@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/another.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/index.css">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/another.js"></script>
+    <script src="../static/js/index.js"></script>
+    <script src="../static/js/sign_up.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/index/">
+                    <img src="../static/image/logo.png" alt="Brand" class="img-circle img-responsive">
+                </a>
+                <form method="get" action="/search/">
+                    {% csrf_token %}
+                    <input type="search" placeholder="搜索" required="required" name="search_key"><button type="submit">搜索</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="center4">
+        {% for movie in movie_list %}
+            <div class="row">
+                <div class="col-sm-4 col-md-2">
+                    <div class="thumbnail">
+                        <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                            <div class="caption">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        <div>
+        {% empty %}
+        <div class="col-sm-4 col-md-2">
+            无结果
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -57,4 +57,6 @@ def search(request):
         #if m.title not in check_same:
         movie_list.append(n)
         #check_same.append(m.title)
-    return render(request, 'search.html', {'movie_list': movie_list})
+    if str(request.user)=="AnonymousUser": # 判断用户是否为匿名用户
+        return render(request,'search_test.html',{'movie_list': movie_list,'now_user':request.user}) # 若是，转移到给匿名用户的页面
+    return render(request,'search_test.html',{'movie_list': movie_list}) # 若不是，转移到给用户的页面
