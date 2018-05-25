@@ -1,0 +1,12 @@
+<li>
+    <div class="search_area">
+        <form class="form-inline" method="get" action="/search/">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="search" class="form-control" placeholder="请输入电影名" required="required" name="search_key">
+            </div>
+            &nbsp;
+            <button type="submit" class="btn btn-primary">搜索</button>
+        </form>
+    </div>
+</li>

@@ -81,27 +81,27 @@
                     document.getElementById("Like_Movie").innerHTML += output;
                 }
             </script>
-                        <br>
-                        <div id = "Recommand_zone">
-                            <h3>为你推荐</h3>
-                            <div id = "Recommand_Movie"></div>
-                        </div>
-                        <script>
-                            var Recommand_movie = {{Recommand_moive|safe}};
-                            for (var key = 0;key < Recommand_movie.length();key++){
-                                if (key % 4 == 0)
-                                    document.getElementById("Recommand_Movie").innerHTML += '<div class="row">';
-                                var output = '';
-                                output+='<div class="col-sm-4 col-md-2">';
-                                output+='    <div class="thumbnail">';
-                                output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><img src="../static/items/{{seen_move_'+ key.toString() +'_id}}" alt="{{like_move_'+ key.toString() +'_id}}" title="{{like_move_'+ key.toString() +'_id}}">';
-                                output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><strong>{{like_move_'+ key.toString() +'_title}}</strong></a><br>';
-                                output+='        </div>';
-                                output+='    </div>';
-                                output+='</div>';
-                                document.getElementById("Recommand_Movie").innerHTML += output;
-                            }
-                        </script>                
+            <br>
+            <div id = "Recommand_zone">
+                <h3>为你推荐</h3>
+                <div id = "Recommand_Movie"></div>
+            </div>
+            <script>
+                var Recommand_movie = {{Recommand_moive|safe}};
+                for (var key = 0;key < Recommand_movie.length();key++){
+                    if (key % 4 == 0)
+                        document.getElementById("Recommand_Movie").innerHTML += '<div class="row">';
+                    var output = '';
+                    output+='<div class="col-sm-4 col-md-2">';
+                    output+='    <div class="thumbnail">';
+                    output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><img src="../static/items/{{seen_move_'+ key.toString() +'_id}}" alt="{{like_move_'+ key.toString() +'_id}}" title="{{like_move_'+ key.toString() +'_id}}">';
+                    output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><strong>{{like_move_'+ key.toString() +'_title}}</strong></a><br>';
+                    output+='        </div>';
+                    output+='    </div>';
+                    output+='</div>';
+                    document.getElementById("Recommand_Movie").innerHTML += output;
+                }
+            </script>                
         </div>
     </body>
 </html>

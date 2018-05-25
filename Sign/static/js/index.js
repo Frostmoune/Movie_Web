@@ -52,5 +52,5 @@ function getMovieList(){
     }
 }
 
-window.onload=setInterval(getMovieList,60000); // 10000表示10000毫秒
+window.onload=setInterval(getMovieList,30000); // 10000表示10000毫秒
 

@@ -38,6 +38,10 @@ img{
     color:red;
 }
 
+.search_area > form > div > input{
+    font-size:15px;
+}
+
 .container .row > div > .thumbnail{
     border: none;
 }
