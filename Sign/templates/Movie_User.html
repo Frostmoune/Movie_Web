@@ -78,9 +78,9 @@
                 <form action="#" method="POST">
                     {% csrf_token %}
                     <div class="Input_Box">
-                        <textarea class="Input_text" id = "{{post_comment}}" name="post_comment"></textarea>
+                        <textarea class="Input_text" id="comment" name="post_comment"></textarea>
                         <div class="Input_Foot">
-                            <button type="sumbit" class="btn btn-primary btn-block" id="post up">确定</button>
+                            <button type="button" class="btn btn-primary btn-block" id="post up" onclick="postComment()">确定</button>
                         </div>
                     </div>
                 </form>

@@ -2,6 +2,7 @@ function moreInfo(obj){
     $(obj).parent().children("span").attr("style", "display:inline;");
     $(obj).attr("style","display:none;");
 }
+
 function getSignInForm(response){
     if(response['isPost']==false){
         alert("评论失败！");
@@ -11,21 +12,23 @@ function getSignInForm(response){
         window.location.reload();// 刷新当前页面
     }
 }
+
 function postComment(){
     $.ajax({
-        url:"post_comment",
+        url:"#",
         type:"post",
         dataType:"json",
         data:{
-                'postcomment':$("#PostComment").val(),
+                'post_comment':$("#comment").val()
             },
         async:false,
         success:function(response){
-            getPostInForm(response);
+            //alert("评论成功");
+            location.reload();
         },
-        error:function(){
-            alert("评论失败！");
-            // location.reload();
+        error:function(response){
+            location.reload();
+            //alert("评论失败！");
         }
     });
 }

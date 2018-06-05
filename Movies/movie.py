@@ -161,24 +161,24 @@ def showPerMovie(request, id):
     movie['imdb'] = now_movie.imdb
     movie['episodes'] = now_movie.episodes
     movie['length_episodes'] = now_movie.length_episodes
-    if request.method=='POST' and str(request.user)!="AnonymousUser":
-        Comment.objects.create(user_name=request.user,content=request.POST['post_comment'],movie_name=now_movie.title)
-    comment_list=Comment.objects.filter(movie_name__exact = now_movie.title)
-    m=[]
-    for x in comment_list:
-        n={}
-        n['user_name']=x.user_name
-        n['content']=x.content
-        n['date']=x.date
-        m.append(n)
     return_dict = {
         'Info':json.dumps(movie),
-        'Other':json.dumps(other_info),
-        'comment_list':m,
+        'Other':json.dumps(other_info)
     }
+    if request.method=='POST' and str(request.user)!="AnonymousUser":
+        Comment.objects.create(user_name=request.user, content=request.POST['post_comment'], movie_name=now_movie.title)
+    comment_list=Comment.objects.filter(movie_name__exact = now_movie.title)
+    post_comment = []
+    for x in comment_list:
+        now_comment={}
+        now_comment['user_name']=str(x.user_name)
+        now_comment['content']=str(x.content)
+        now_comment['date']=x.date
+        post_comment.append(now_comment)
+    if len(post_comment) > 0:
+        return_dict['comment_list'] = post_comment
     if str(request.user)=="AnonymousUser":
         return render(request, 'Movie.html', return_dict)
     else:
         other_info['now_user'] = str(request.user)
-        return_dict['Other'] = json.dumps(other_info)
         return render(request, 'Movie_User.html', return_dict)
