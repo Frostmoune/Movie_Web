@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import JsonResponse
-from .models import Movie
+from .models import Movie,Comment
 from collections import OrderedDict
+from django.views.decorators.csrf import csrf_exempt
+import time
 import json
 import random
 import os
@@ -133,6 +135,7 @@ def pullMovieList(request):
         print(e)
         return render_to_response(None)
 
+@csrf_exempt
 def showPerMovie(request, id):
     now_movie = Movie.objects.filter(image_id__exact = id)[0]
     other_info = {'index':'/index/',
@@ -158,9 +161,20 @@ def showPerMovie(request, id):
     movie['imdb'] = now_movie.imdb
     movie['episodes'] = now_movie.episodes
     movie['length_episodes'] = now_movie.length_episodes
+    if request.method=='POST' and str(request.user)!="AnonymousUser":
+        Comment.objects.create(user_name=request.user,content=request.POST['post_comment'],movie_name=now_movie.title)
+    comment_list=Comment.objects.filter(movie_name__exact = now_movie.title)
+    m=[]
+    for x in comment_list:
+        n={}
+        n['user_name']=x.user_name
+        n['content']=x.content
+        n['date']=x.date
+        m.append(n)
     return_dict = {
         'Info':json.dumps(movie),
         'Other':json.dumps(other_info),
+        'comment_list':m,
     }
     if str(request.user)=="AnonymousUser":
         return render(request, 'Movie.html', return_dict)

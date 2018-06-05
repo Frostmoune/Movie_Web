@@ -20,3 +20,9 @@ class Movie(models.Model):
     length_episodes = models.TextField() # 每集长度
     search_tag = models.TextField(default = "Null") # 用于查询（根据类型）
     image_id = models.CharField(max_length = 7) # 对应的海报id
+
+class Comment(models.Model):
+    user_name = models.TextField()
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    movie_name = models.TextField()
