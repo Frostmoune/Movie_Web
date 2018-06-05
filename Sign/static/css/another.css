@@ -41,6 +41,9 @@ img{
 .search_area > form > div > input{
     font-size:15px;
 }
+.search_area > form{
+    margin-top:8px;
+}
 
 .container .row > div > .thumbnail{
     border: none;

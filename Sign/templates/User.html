@@ -44,64 +44,91 @@
                 <h3>我看过的</h3>
                 <div id = "Seen_Movie"></div>
             </div>
-            <script>
-                var seen_movie = {{Seen_movie|safe}};
-                for (var key = 0;key < seen_movie.length();key++){
-                    if (key % 4 == 0)
-                        document.getElementById("Seen_Movie").innerHTML += '<div class="row">';
-                    var output = '';
-                    output+='<div class="col-sm-4 col-md-2">';
-                    output+='    <div class="thumbnail">';
-                    output+='        <a href="../movie/'+ seen_movie[key].id +'"><img src="../static/items/'+ seen_movie[key].id +'" alt="'+ seen_movie[key].id +'" title="'+ seen_movie[key].id +'">';
-                    output+='        <a href="../movie/{{seen_move_'+ seen_movie[key].id +'_id}}"><strong>{{seen_move_'+ key.toString() +'_title}}</strong></a><br>';
-                    output+='        </div>';
-                    output+='    </div>';
-                    output+='</div>';
-                    document.getElementById("Seen_Movie").innerHTML += output;
-                }
-            </script>
+            <div class="container" id="center4">
+                    <div class="row">
+                    {% for movie in seen_movie_list %}
+                        <div class="col-sm-4 col-md-2">
+                            <div class="thumbnail">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                                <div class="caption">
+                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% if forloop.counter|divisibleby:5 %}
+                    </div>
+                    <div class="row">
+                    {% endif %}
+                    {% empty %}
+                    <div class="col-sm-4 col-md-2">
+                        <p class="info_3">无结果</p>
+                    </div>
+                    {% endfor %}
+                    </div>>
+                </div>
             <br>
             <div id = "Favourite_zone">
                 <h3>我喜欢看的</h3>
                 <div id = "Like_Movie"></div>
             </div>
-            <script>
-                var like_movie = {{Like_moive|safe}};
-                for (var key = 0;key < like_movie.length();key++){
-                    if (key % 4 == 0)
-                        document.getElementById("Like_Movie").innerHTML += '<div class="row">';
-                    var output = '';
-                    output+='<div class="col-sm-4 col-md-2">';
-                    output+='    <div class="thumbnail">';
-                    output+='        <a href="../movie/{{like_move_'+ key.toString() +'_id}}"><img src="../static/items/{{seen_move_'+ key.toString() +'_id}}" alt="{{like_move_'+ key.toString() +'_id}}" title="{{like_move_'+ key.toString() +'_id}}">';
-                    output+='        <a href="../movie/{{like_move_'+ key.toString() +'_id}}"><strong>{{like_move_'+ key.toString() +'_title}}</strong></a><br>';
-                    output+='        </div>';
-                    output+='    </div>';
-                    output+='</div>';
-                    document.getElementById("Like_Movie").innerHTML += output;
-                }
-            </script>
+            <div class="container" id="center4">
+                    <div class="row">
+                    {% for movie in favourite_movie_list %}
+                        <div class="col-sm-4 col-md-2">
+                            <div class="thumbnail">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                                <div class="caption">
+                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% if forloop.counter|divisibleby:5 %}
+                    </div>
+                    <div class="row">
+                    {% endif %}
+                    {% empty %}
+                    <div class="col-sm-4 col-md-2">
+                        <p class="info_3">无结果</p>
+                    </div>
+                    {% endfor %}
+                    </div>>
+                </div>
             <br>
             <div id = "Recommand_zone">
                 <h3>为你推荐</h3>
                 <div id = "Recommand_Movie"></div>
             </div>
-            <script>
-                var Recommand_movie = {{Recommand_moive|safe}};
-                for (var key = 0;key < Recommand_movie.length();key++){
-                    if (key % 4 == 0)
-                        document.getElementById("Recommand_Movie").innerHTML += '<div class="row">';
-                    var output = '';
-                    output+='<div class="col-sm-4 col-md-2">';
-                    output+='    <div class="thumbnail">';
-                    output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><img src="../static/items/{{seen_move_'+ key.toString() +'_id}}" alt="{{like_move_'+ key.toString() +'_id}}" title="{{like_move_'+ key.toString() +'_id}}">';
-                    output+='        <a href="../movie/{{Recommand_move_'+ key.toString() +'_id}}"><strong>{{like_move_'+ key.toString() +'_title}}</strong></a><br>';
-                    output+='        </div>';
-                    output+='    </div>';
-                    output+='</div>';
-                    document.getElementById("Recommand_Movie").innerHTML += output;
-                }
-            </script>                
+            <div class="container" id="center4">
+                    <div class="row">
+                    {% for movie in recommand_movie_list %}
+                        <div class="col-sm-4 col-md-2">
+                            <div class="thumbnail">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                                <div class="caption">
+                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% if forloop.counter|divisibleby:5 %}
+                    </div>
+                    <div class="row">
+                    {% endif %}
+                    {% empty %}
+                    <div class="col-sm-4 col-md-2">
+                        <p class="info_3">无结果</p>
+                    </div>
+                    {% endfor %}
+                    </div>>
+                </div>
         </div>
     </body>
 </html>

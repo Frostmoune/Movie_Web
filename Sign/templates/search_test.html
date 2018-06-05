@@ -27,26 +27,29 @@
             </div>
         </nav>
         <div class="container" id="center4">
+            <div class="row">
             {% for movie in movie_list %}
-                <div class="row">
-                    <div class="col-sm-4 col-md-2">
-                        <div class="thumbnail">
-                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
-                            <div class="caption">
-                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
-                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
-                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
-                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
-                            </div>
+                <div class="col-sm-4 col-md-2">
+                    <div class="thumbnail">
+                        <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                        <div class="caption">
+                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                            <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                            <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                            <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
                         </div>
                     </div>
                 </div>
-            <div>
+            {% if forloop.counter|divisibleby:5 %}
+            </div>
+            <div class="row">
+            {% endif %}
             {% empty %}
             <div class="col-sm-4 col-md-2">
                 <p class="info_3">无结果</p>
             </div>
             {% endfor %}
+            </div>>
         </div>
     </body>
 </html>
