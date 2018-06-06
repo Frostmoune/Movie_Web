@@ -52,22 +52,31 @@
             <div row="comment-header">
                 <p class="text-center"><h3>评论区</h3></p>
             </div>
-            <div>
+            <div id="user_comment_list">
                 {% for comment in comment_list %}
-                    <div>{{comment.user_name}}</div>
-                    <textarea class="Input_text" id = "{{comment}}">{{comment.content}}</textarea>
-                    <div>           {{comment.date}}</div>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><img alt="Brand" class="img-circle img-responsive" id="user_image_comment" src="{{comment.user_image_url}}"></li>
+                            <li><a class="btn btn-link">{{comment.user_name}}</a></li>
+                        </ul>
+                    </div>
                     <br>
+                    <div class="comment_text">
+                        <textarea id = "{{comment}}" readonly = "readonly">{{comment.content}}</textarea><br>
+                    </div>
+                    <div>
+                        <p>{{comment.date}}</p>
+                    </div>
                 {% empty %}
                     <div class="col-sm-4 col-md-2">
                         <p class="info_3">无评论</p>
                     </div>
-                    <br>
-                    <br>
                 {% endfor %}
             </div>
-            <div class="Input_Box">
-                <textarea class="Input_Box" placeholder="请登录后再进行评论" disabled></textarea>
+            <div>
+                <div class="Input_Box">
+                    <textarea placeholder="请登录后再进行评论" disabled></textarea>
+                </div>
             </div>
         </div>
         <br>

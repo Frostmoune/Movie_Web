@@ -47,8 +47,8 @@
                         <img alt="movie" id="movie_show">
                     </div>
                     <div class="caption">
-                        <button class="btn btn-success btn-sm" onclick="post_movieLike()">我喜欢</button>&nbsp;
-                        <button class="btn btn-warning btn-sm" onclick="post_movieSeen()">我看过</button>
+                        <button class="btn btn-success" onclick="post_movieLike()">我喜欢</button>
+                        <button class="btn btn-warning" onclick="post_movieSeen()">我看过</button>
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-3" id="movie_info">
@@ -60,25 +60,30 @@
             <div row="comment-header">
                 <p class="text-center"><h3>评论区</h3></p>
             </div>
-            <div>
+            <div id="user_comment_list">
                 {% for comment in comment_list %}
-                    <div>{{comment.user_name}}</div>
-                    <textarea class="Input_text" id = "{{comment}}">{{comment.content}}</textarea>
-                    <div>           {{comment.date}}</div>
-                    <br>
-                {% empty %}
-                    <div class="col-sm-4 col-md-2">
-                        <p class="info_3">无评论</p>
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><img alt="Brand" class="img-circle img-responsive" id="user_image_comment" src="{{comment.user_image_url}}"></li>
+                            <li><a class="btn btn-link">{{comment.user_name}}</a></li>
+                        </ul>
                     </div>
                     <br>
-                    <br>
+                    <div class="comment_text">
+                        <textarea id = "{{comment}}" readonly = "readonly">{{comment.content}}</textarea><br>
+                    </div>
+                    <div>
+                        <p>{{comment.date}}</p>
+                    </div>
+                {% empty %}
+                    <p class="info_3">无评论</p>
                 {% endfor %}
             </div>
             <div>
                 <form action="#" method="POST">
                     {% csrf_token %}
                     <div class="Input_Box">
-                        <textarea class="Input_text" id="comment" name="post_comment"></textarea>
+                        <textarea id="comment" name="post_comment"></textarea>
                         <div class="Input_Foot">
                             <button type="button" class="btn btn-primary btn-block" id="post up" onclick="postComment()">确定</button>
                         </div>
@@ -88,7 +93,7 @@
         </div>
         <br>
         <div class="container" id = "center6">
-            <div id = "comment_zone"></div>>
+            <div id = "comment_zone"></div>
             <script>
                 var comment = {{Comment|safe}};
                 var comment_number = {{Commen_num|safe}};

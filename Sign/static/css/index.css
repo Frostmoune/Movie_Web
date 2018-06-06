@@ -19,3 +19,11 @@
     font-family:"华文中宋";
     color:rgb(255, 11, 11);
 }
+
+.container .row .caption .btn-success{
+    float:left;
+}
+
+.container .row .caption .btn-warning{
+    float:right;
+}

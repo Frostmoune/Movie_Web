@@ -12,6 +12,7 @@
 }
 
 .Input_Box {
+    margin-top:5px;
     width: 495px;
     height: 150px;
     border: 1px solid #ccc;
@@ -37,6 +38,7 @@
     outline: none;
     border: 0px solid #fff;
     resize: none;
+    margin-top:5px;
     font: 13px "微软雅黑", Arial, Helvetica, sans-serif;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -55,8 +57,11 @@
 }
 
 .container .row .btn-warning{
-    position: relative;
-    left:80px;
+    float:right;
+}
+
+.container .row .btn-success{
+    float:left;
 }
 
 .postBtn {
@@ -82,4 +87,45 @@
 
 #center5{
     height:200px;
+}
+
+#user_comment_list > div > ul > li > img{
+    width: 40px;
+    height: 40px;
+}
+
+#user_comment_list{
+    display: inline-block;
+}
+
+#user_comment_list .btn-link{
+    margin-left:5px;
+    width: 80px;
+    height: 42px;
+    text-align: center;
+    font-size:18px;
+}
+
+#user_comment_list .comment_text{
+    width: 400px;
+    height: 56px;
+    display: inline-block;
+}
+
+#user_comment_list .comment_text > textarea{
+    width: 400px;
+    height: 55px;
+    overflow: hidden;
+    position: absolute;
+    font: 18px "微软雅黑", Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    border:none;
+}
+
+#user_comment_list .comment_text > textarea:active{
+    border:none;
+}
+
+#user_comment_list .comment_text > p{
+    margin-top: 2px;
 }

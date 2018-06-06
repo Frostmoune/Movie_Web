@@ -163,7 +163,6 @@ def showPerMovie(request, id):
     movie['length_episodes'] = now_movie.length_episodes
     return_dict = {
         'Info':json.dumps(movie),
-        'Other':json.dumps(other_info)
     }
     if request.method=='POST' and str(request.user)!="AnonymousUser":
         Comment.objects.create(user_name=request.user, content=request.POST['post_comment'], movie_name=now_movie.title)
@@ -174,11 +173,14 @@ def showPerMovie(request, id):
         now_comment['user_name']=str(x.user_name)
         now_comment['content']=str(x.content)
         now_comment['date']=x.date
+        now_comment['user_image_url']='../static/image/user.png'
         post_comment.append(now_comment)
     if len(post_comment) > 0:
         return_dict['comment_list'] = post_comment
     if str(request.user)=="AnonymousUser":
+        return_dict['Other'] = json.dumps(other_info)
         return render(request, 'Movie.html', return_dict)
     else:
         other_info['now_user'] = str(request.user)
+        return_dict['Other'] = json.dumps(other_info)
         return render(request, 'Movie_User.html', return_dict)
