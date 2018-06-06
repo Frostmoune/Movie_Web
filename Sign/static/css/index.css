@@ -20,10 +20,10 @@
     color:rgb(255, 11, 11);
 }
 
-.container .row .caption .btn-success{
+.container .row .btn-success{
     float:left;
 }
 
-.container .row .caption .btn-warning{
+.container .row .btn-warning{
     float:right;
 }
