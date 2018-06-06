@@ -24,11 +24,6 @@
     float:left;
 }
 
-<<<<<<< HEAD
-.container .row .caption .btn-warning{
-    float: right;;
-=======
 .container .row .btn-warning{
-    float:right;
->>>>>>> 360e257282a72fa111665dca624ef18967a9a5fb
+    float: right;
 }
