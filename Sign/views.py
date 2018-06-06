@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from Movies import movie as signmovie
-from Movies.models import Movie
+from Movies.models import Movie,UserMovie
+from django.views.decorators.csrf import csrf_exempt
 import random
 import os
 
@@ -12,6 +13,7 @@ def signIn(request):
     return render(request,'Sign_in.html',dict(signin_contents,**signmovie.contents))
 
 # 目录页面的视图
+@csrf_exempt
 def index(request):
     now_movie = {}
     length = 251
@@ -31,6 +33,9 @@ def index(request):
         now_movie['movie_show_' + str(i+1) + '_score'] = now_movie_info.score
         now_movie['movie_show_' + str(i+1) + '_type'] = now_movie_info.types
         now_movie['movie_show_' + str(i+1) + '_country'] = now_movie_info.country
+    if request.method=='POST' and str(request.user)!="AnonymousUser":
+        if len(UserMovie.objects.filter(user_name__exact=request.user, movie_title__exact=request.POST['movie_title'], movie_tag__exact=request.POST['tag']))==0:
+            UserMovie.objects.create(user_name=request.user, movie_title=request.POST['movie_title'], movie_tag=request.POST['tag'])
     if str(request.user)=="AnonymousUser": # 判断用户是否为匿名用户
         return render(request,'Index.html',dict(now_movie,**signmovie.contents)) # 若是，转移到给匿名用户的页面
     now_movie['now_user'] = request.user

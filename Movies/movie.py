@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import JsonResponse
-from .models import Movie,Comment
+from .models import Movie,Comment,UserMovie
 from collections import OrderedDict
 from django.views.decorators.csrf import csrf_exempt
 import time
@@ -92,6 +92,7 @@ def loadAllInfo():
   
 # loadAllInfo()
 
+@csrf_exempt
 def pullMovieList(request):
     try:
         content = request.GET
@@ -124,6 +125,9 @@ def pullMovieList(request):
             now_movie['movie_show_' + str(i+1) + '_score'] = now_movie_info.score
             now_movie['movie_show_' + str(i+1) + '_type'] = now_movie_info.types
             now_movie['movie_show_' + str(i+1) + '_country'] = now_movie_info.country
+        if request.method=='POST' and str(request.user)!="AnonymousUser":
+            if len(UserMovie.objects.filter(user_name__exact=request.user, movie_title__exact=request.POST['movie_title'], movie_tag__exact=request.POST['tag']))==0:
+                UserMovie.objects.create(user_name=request.user, movie_title=request.POST['movie_title'], movie_tag=request.POST['tag'])
         if is_change=='1':
             if str(request.user)=="AnonymousUser": # 用于判断当前页面的用户是否为匿名用户
                 return render_to_response('Index.html',dict(now_movie, **contents))
@@ -165,7 +169,11 @@ def showPerMovie(request, id):
         'Info':json.dumps(movie),
     }
     if request.method=='POST' and str(request.user)!="AnonymousUser":
-        Comment.objects.create(user_name=request.user, content=request.POST['post_comment'], movie_name=now_movie.title)
+        if request.POST['comment_flag']=='t':
+            Comment.objects.create(user_name=request.user, content=request.POST['post_comment'], movie_name=now_movie.title)
+        else:
+            if len(UserMovie.objects.filter(user_name__exact=request.user, movie_title__exact=request.POST['movie_title'], movie_tag__exact=request.POST['tag']))==0:
+                UserMovie.objects.create(user_name=request.user, movie_title=request.POST['movie_title'], movie_tag=request.POST['tag'])
     comment_list=Comment.objects.filter(movie_name__exact = now_movie.title)
     post_comment = []
     for x in comment_list:
@@ -177,6 +185,7 @@ def showPerMovie(request, id):
         post_comment.append(now_comment)
     if len(post_comment) > 0:
         return_dict['comment_list'] = post_comment
+    return_dict['movie_title'] = now_movie.title
     if str(request.user)=="AnonymousUser":
         return_dict['Other'] = json.dumps(other_info)
         return render(request, 'Movie.html', return_dict)

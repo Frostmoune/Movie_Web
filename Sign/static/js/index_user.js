@@ -1,19 +1,39 @@
-function postLike(movie_id){
+function postLike(movie_title){
     $.ajax({
-        url:"logOut",
-        type:"get",
+        url:"#",
+        type:"post",
         dataType:"json",
-        data:{'movie_id':movie_id},
+        data:{'movie_title':movie_title,
+                'tag':'liked'
+            },
         async:false,
+        success:function(response){
+            //alert("评论成功");
+            //location.reload();
+        },
+        error:function(response){
+            //location.reload();
+            //alert("评论失败！");
+        }
     });
 }
 
-function postSeen(movie_id){
+function postSeen(movie_title){
     $.ajax({
-        url:"logOut",
-        type:"get",
+        url:"#",
+        type:"post",
         dataType:"json",
-        data:{'movie_id':movie_id},
+        data:{'movie_title':movie_title,
+                'tag':'seen'
+            },
         async:false,
+        success:function(response){
+            //alert("评论成功");
+            //location.reload();
+        },
+        error:function(response){
+            //location.reload();
+            //alert("评论失败！");
+        }
     });
 }

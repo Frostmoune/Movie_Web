@@ -26,3 +26,8 @@ class Comment(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     movie_name = models.TextField()
+
+class UserMovie(models.Model):
+    user_name = models.TextField()
+    movie_title = models.TextField()
+    movie_tag = models.TextField()

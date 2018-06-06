@@ -47,8 +47,11 @@
                         <img alt="movie" id="movie_show">
                     </div>
                     <div class="caption">
-                        <button class="btn btn-success" onclick="post_movieLike()">我喜欢</button>
-                        <button class="btn btn-warning" onclick="post_movieSeen()">我看过</button>
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+                            <button type='button' class="btn btn-success btn-sm" onclick="postLike('{{movie_title}}')">我喜欢</button>
+                            <button type='button' class="btn btn-warning btn-sm" onclick="postSeen('{{movie_title}}')">我看过</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-3" id="movie_info">

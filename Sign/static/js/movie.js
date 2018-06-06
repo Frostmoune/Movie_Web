@@ -19,7 +19,8 @@ function postComment(){
         type:"post",
         dataType:"json",
         data:{
-                'post_comment':$("#comment").val()
+                'post_comment':$("#comment").val(),
+                'comment_flag':'t'
             },
         async:false,
         success:function(response){
@@ -33,22 +34,44 @@ function postComment(){
     });
 }
 
-function post_movieLike(){
+function postLike(movie_title){
     $.ajax({
-        url:"logOut",
-        type:"get",
+        url:"#",
+        type:"post",
         dataType:"json",
-        data:{'this_movie_id':true},
+        data:{'movie_title':movie_title,
+                'tag':'liked',
+                'comment_flag':'f'
+            },
         async:false,
+        success:function(response){
+            //alert("评论成功");
+            //location.reload();
+        },
+        error:function(response){
+            //location.reload();
+            //alert("评论失败！");
+        }
     });
 }
 
-function post_movieSeen(){
+function postSeen(movie_title){
     $.ajax({
-        url:"logOut",
-        type:"get",
+        url:"#",
+        type:"post",
         dataType:"json",
-        data:{'this_movie_id':true},
+        data:{'movie_title':movie_title,
+                'tag':'seen',
+                'comment_flag':'f'
+            },
         async:false,
+        success:function(response){
+            //alert("评论成功");
+            //location.reload();
+        },
+        error:function(response){
+            //location.reload();
+            //alert("评论失败！");
+        }
     });
 }

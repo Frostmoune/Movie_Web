@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignupForm,SigninForm
 from .views import index
 from Movies import movie
+from Movies.models import Movie,UserMovie
 import random
 import os
 import re
@@ -76,6 +77,34 @@ def doLogOut(request):
     return JsonResponse({'logOut':False})
 
 # 用户页面的视图
-def user(request):
+def user(request,user):
     user_contents = {"now_title":"User"}
-    return render(request,'User.html',dict(user_contents,**user.contents))
+    user_contents = {"now_user":request.user}
+    m=[]
+    n=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='seen')
+    for x in n:
+        y=Movie.objects.filter(title__exact=x.movie_title)[0]
+        z={}
+        z['id']=y.image_id
+        z['picture']="poster/"+y.image_id+".jpg"
+        z['title']=y.title
+        z['score']=y.score
+        z['type']=y.types
+        z['country']=y.country
+        m.append(z)
+    user_contents['seen_movie_list']=m
+    m=[]
+    n=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='liked')
+    for x in n:
+        y=Movie.objects.filter(title__exact=x.movie_title)[0]
+        z={}
+        z['id']=y.image_id
+        z['picture']="poster/"+y.image_id+".jpg"
+        z['title']=y.title
+        z['score']=y.score
+        z['type']=y.types
+        z['country']=y.country
+        m.append(z)
+    user_contents['favourite_movie_list']=m
+    user_contents['recommand_movie_list']=[]
+    return render(request,'User.html',user_contents)
