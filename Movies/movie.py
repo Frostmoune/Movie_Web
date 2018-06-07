@@ -240,8 +240,10 @@ def simpleRecommend(seen, liked):
             else:
                 types_dict[now_country.strip()] += 1
             country_total_scores += 1
-    
-    select_movies = random.sample(movies_set, 60)
+    if len(movies_set) >= 60:
+        select_movies = random.sample(movies_set, 60)
+    else:
+        select_movies = []
     movie_scores = {}
     for movie in select_movies:
         now_types = movie.types.split("/")

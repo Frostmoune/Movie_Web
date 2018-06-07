@@ -70,7 +70,6 @@
                 <h4>无结果</h4>
                 {% endfor %}
                 </div>
-                <button type="button" id = "Recommend_but" class="btn btn-link btn-sm" onclick="getMoreMovie('changed')">换一批</button>
             </div>
             <hr>
             <div id = "Seen_zone">
@@ -140,6 +139,12 @@
                 now_tag.attr('onclick', "getMoreMovie('liked')");
                 now_tag.attr('id', "Liked_but");
                 $('#Favourite_zone').append(now_tag);
+            }
+            if($('#Recommend_zone').find(".col-sm-4").length >= 6){
+                var now_tag = $('<button></button>').attr('class', 'btn btn-link btn-sm').text("换一批");
+                now_tag.attr('onclick', "getMoreMovie('changed')");
+                now_tag.attr('id', "Recommend_but");
+                $('#Recommend_zone').append(now_tag);
             }
         </script>
     </body>
