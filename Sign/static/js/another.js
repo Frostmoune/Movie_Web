@@ -25,10 +25,12 @@ function postLogOut(){
                 window.location.reload();
             }
             else{
+                alert(1);
                 alert("注销失败！");
             }
         },
         error:function(){
+            alert(2);
             alert("注销失败！");
         }
     });

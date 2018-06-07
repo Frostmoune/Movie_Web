@@ -7,11 +7,13 @@
         <link type="text/css" rel="stylesheet" href="../static/css/another.css">
         <link type="text/css" rel="stylesheet" href="../static/css/index.css">
         <link type="text/css" rel="stylesheet" href="../static/css/movie.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/user.css">
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="../static/js/bootstrap.min.js"></script>
         <script src="../static/js/index_user.js"></script>
         <script src="../static/js/another.js"></script>
         <script src="../static/js/movie.js"></script>
+        <script src="../static/js/user.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -40,14 +42,42 @@
         </nav>
         <div class="container" id="center4">
             <div class="row">
-                <h1 class="" id="user"><strong>{{now_user}}</strong></h1>
+                <h1 id="user"><strong>{{now_user}}</strong></h1>
+            </div>
+            <hr>
+            <div id = "Recommend_zone">
+                <div class="row">
+                    <h3><strong>为你推荐</strong></h3>
+                </div>
+                <div class="row" id="Recommend_list">
+                {% for movie in recommend_movie_list %}
+                    <div class="col-sm-4 col-md-2">
+                        <div class="thumbnail">
+                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                            <div class="caption">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% if forloop.counter|divisibleby:6 %}
+                </div>
+                <div class="row">
+                {% endif %}
+                {% empty %}
+                <h4>无结果</h4>
+                {% endfor %}
+                </div>
+                <button type="button" id = "Recommend_but" class="btn btn-link btn-sm" onclick="getMoreMovie('changed')">换一批</button>
             </div>
             <hr>
             <div id = "Seen_zone">
                 <div class="row">
                     <h3><strong>我看过的</strong></h3>
                 </div>
-                <div class="row">
+                <div class="row" id="Seen_list">
                 {% for movie in seen_movie_list %}
                     <div class="col-sm-4 col-md-2">
                         <div class="thumbnail">
@@ -74,7 +104,7 @@
                 <div class="row">
                     <h3><strong>我喜欢看的</strong></h3>
                 </div>
-                <div class="row">
+                <div class="row" id="Liked_list">
                 {% for movie in favourite_movie_list %}
                     <div class="col-sm-4 col-md-2">
                         <div class="thumbnail">
@@ -97,32 +127,20 @@
                 </div>
             </div>
             <hr>
-            <div id = "Recommand_zone">
-                <div class="row">
-                    <h3><strong>为你推荐</strong></h3>
-                </div>
-                <div class="row">
-                {% for movie in recommend_movie_list %}
-                    <div class="col-sm-4 col-md-2">
-                        <div class="thumbnail">
-                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
-                            <div class="caption">
-                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
-                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
-                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
-                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% if forloop.counter|divisibleby:6 %}
-                </div>
-                <div class="row">
-                {% endif %}
-                {% empty %}
-                <h4>无结果</h4>
-                {% endfor %}
-                </div>
-            </div>
         </div>
+        <script>
+            if($('#Seen_zone').find(".col-sm-4").length >= 6){
+                var now_tag = $('<button></button>').attr('class', 'btn btn-link btn-sm').text("更多");
+                now_tag.attr('onclick', "getMoreMovie('seen')");
+                now_tag.attr('id', "Seen_but");
+                $('#Seen_zone').append(now_tag);
+            }
+            if($('#Favourite_zone').find(".col-sm-4").length >= 6){
+                var now_tag = $('<button></button>').attr('class', 'btn btn-link btn-sm').text("更多");
+                now_tag.attr('onclick', "getMoreMovie('liked')");
+                now_tag.attr('id', "Liked_but");
+                $('#Favourite_zone').append(now_tag);
+            }
+        </script>
     </body>
 </html>

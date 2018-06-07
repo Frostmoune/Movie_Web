@@ -2,3 +2,8 @@
     float: left;
     border: 50px;
 }
+
+.btn-link{
+    float:right;
+    font-size:17px;
+}

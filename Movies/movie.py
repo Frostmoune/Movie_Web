@@ -241,7 +241,7 @@ def simpleRecommend(seen, liked):
                 types_dict[now_country.strip()] += 1
             country_total_scores += 1
     
-    select_movies = random.sample(movies_set, 50)
+    select_movies = random.sample(movies_set, 60)
     movie_scores = {}
     for movie in select_movies:
         now_types = movie.types.split("/")
@@ -257,7 +257,7 @@ def simpleRecommend(seen, liked):
         for now_country in now_countries:
             if now_country.strip() in country_dict:
                 country_score += types_dict[now_country.strip()] / country_total_scores
-        movie_scores[movie] = now_score * 8 + type_score * 6 + country_score * 3
+        movie_scores[movie] = now_score * 10 + type_score * 6 + country_score * 3
 
     movie_info = []
     num = 0
@@ -274,3 +274,31 @@ def simpleRecommend(seen, liked):
         movie_info.append(now_movie_info)
         num += 1
     return movie_info
+
+def getTagMovie(user, now_tag):
+    movies = UserMovie.objects.filter(user_name__exact=user, movie_tag__exact=now_tag)
+    movies_info = []
+    for x in movies:
+        now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        movies_info.append(now_movie_info)
+    return movies_info
+
+def updateUserMovie(request):
+    if request.method == "GET":
+        now_tag = str(request.path).split("/")[2]
+        movies_info = getTagMovie(request.user, now_tag)
+        return JsonResponse({'More':movies_info})
+    return None
+
+def changeRecommend(request):
+    if request.method == "GET":
+        seen_movies = getTagMovie(request.user, 'seen')
+        liked_movies = getTagMovie(request.user, 'liked')
+        return JsonResponse({'Changed':simpleRecommend(seen_movies, liked_movies)})

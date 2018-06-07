@@ -46,6 +46,7 @@ def signUp(request):
     signup_contents = {"now_title":"Sign_up","user_id":"Userid","password1":"Password","email":"Email","password2":"ConfirmPassword"}
     return render(request,'Sign_up.html',dict(signup_contents,**signmovie.contents))
 
+# 搜索页面的视图
 def search(request):
     search_key = request.GET.get('search_key')
     all_movie = Movie.objects.filter(title__icontains=search_key)
@@ -65,3 +66,44 @@ def search(request):
     if str(request.user)=="AnonymousUser": # 判断用户是否为匿名用户
         return render(request,'Search_test.html',dict({'movie_list': movie_list}, **signmovie.contents)) # 若是，转移到给匿名用户的页面
     return render(request,'Search_user.html',dict({'movie_list': movie_list, 'now_user' : request.user}, **signmovie.contents)) # 若不是，转移到给用户的页面
+
+# 用户页面的视图
+def user(request,user):
+    user_contents = {"now_title":"User"}
+    user_contents = {"now_user":request.user}
+    seen_movie_info=[]
+    seen_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='seen')
+    num = 0
+    for x in seen_movies:
+        if num >= 6:
+            break
+        now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        seen_movie_info.append(now_movie_info)
+        num += 1
+    user_contents['seen_movie_list']=seen_movie_info
+    like_movie_info=[]
+    liked_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='liked')
+    num = 0
+    for x in liked_movies:
+        if num >= 6:
+            break
+        now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        like_movie_info.append(now_movie_info)
+        num += 1
+    user_contents['favourite_movie_list']=like_movie_info
+    user_contents['recommend_movie_list']=signmovie.simpleRecommend(seen_movie_info, like_movie_info)
+    return render(request,'User.html',dict(user_contents, **signmovie.contents))
