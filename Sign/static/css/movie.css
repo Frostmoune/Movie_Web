@@ -60,8 +60,20 @@
     float:right;
 }
 
+.container .row .btn-warning:hover{
+    cursor: pointer;
+    background: #fff;
+    color:black;
+}
+
 .container .row .btn-success{
     float:left;
+}
+
+.container .row .btn-success:hover{
+    cursor: pointer;
+    background: #fff;
+    color:black;
 }
 
 .postBtn {

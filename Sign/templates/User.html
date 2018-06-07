@@ -102,7 +102,7 @@
                     <h3><strong>为你推荐</strong></h3>
                 </div>
                 <div class="row">
-                {% for movie in recommand_movie_list %}
+                {% for movie in recommend_movie_list %}
                     <div class="col-sm-4 col-md-2">
                         <div class="thumbnail">
                             <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">

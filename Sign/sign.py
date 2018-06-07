@@ -81,7 +81,7 @@ def doLogOut(request):
 def user(request,user):
     user_contents = {"now_title":"User"}
     user_contents = {"now_user":request.user}
-    movie_info=[]
+    seen_movie_info=[]
     seen_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='seen')
     for x in seen_movies:
         now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
@@ -92,9 +92,9 @@ def user(request,user):
         now_movie_info['score']=now_movie.score
         now_movie_info['type']=now_movie.types
         now_movie_info['country']=now_movie.country
-        movie_info.append(now_movie_info)
-    user_contents['seen_movie_list']=movie_info
-    movie_info=[]
+        seen_movie_info.append(now_movie_info)
+    user_contents['seen_movie_list']=seen_movie_info
+    like_movie_info=[]
     liked_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='liked')
     for x in liked_movies:
         now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
@@ -105,7 +105,7 @@ def user(request,user):
         now_movie_info['score']=now_movie.score
         now_movie_info['type']=now_movie.types
         now_movie_info['country']=now_movie.country
-        movie_info.append(now_movie_info)
-    user_contents['favourite_movie_list']=movie_info
-    user_contents['recommend_movie_list']=[]
+        like_movie_info.append(now_movie_info)
+    user_contents['favourite_movie_list']=like_movie_info
+    user_contents['recommend_movie_list']=signmovie.simpleRecommend(seen_movie_info, like_movie_info)
     return render(request,'User.html',dict(user_contents, **signmovie.contents))

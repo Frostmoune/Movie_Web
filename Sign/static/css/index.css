@@ -24,6 +24,18 @@
     float:left;
 }
 
+.container .row .btn-success:hover{
+    cursor: pointer;
+    background: #fff;
+    color:black;
+}
+
 .container .row .btn-warning{
     float: right;
+}
+
+.container .row .btn-warning:hover{
+    cursor: pointer;
+    background: #fff;
+    color:black;
 }

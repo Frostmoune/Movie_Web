@@ -193,3 +193,84 @@ def showPerMovie(request, id):
         other_info['now_user'] = str(request.user)
         return_dict['Other'] = json.dumps(other_info)
         return render(request, 'Movie_User.html', return_dict)
+
+# 简单电影推荐
+def simpleRecommend(seen, liked):
+    types_dict = {}
+    country_dict = {}
+    types_total_scores = 0
+    country_total_scores = 0
+    movies_set = set()
+    for liked_movie in liked:
+        now_types = liked_movie['type'].split("/")
+        now_countries = liked_movie['country'].split("/")
+        for now_type in now_types:
+            if not now_type.strip() in types_dict.keys():
+                types_dict[now_type.strip()] = 2
+                for movie in Movie.objects.filter(types__icontains = now_type.strip()):
+                    movies_set.add(movie)
+            else:
+                types_dict[now_type.strip()] += 2
+            types_total_scores += 2
+        for now_country in now_countries:
+            if not now_country.strip() in country_dict.keys():
+                types_dict[now_country.strip()] = 2
+                for movie in Movie.objects.filter(country__icontains = now_country.strip()):
+                    movies_set.add(movie)
+            else:
+                types_dict[now_country.strip()] += 2
+            country_total_scores += 2
+
+    for seen_movie in seen:
+        now_types = seen_movie['type'].split("/")
+        now_countries = seen_movie['country'].split("/")
+        for now_type in now_types:
+            if not now_type.strip() in types_dict.keys():
+                types_dict[now_type.strip()] = 1
+                for movie in Movie.objects.filter(types__icontains = now_type.strip()):
+                    movies_set.add(movie)
+            else:
+                types_dict[now_type.strip()] += 1
+            types_total_scores += 1
+        for now_country in now_countries:
+            if not now_country.strip() in country_dict.keys():
+                types_dict[now_country.strip()] = 1
+                for movie in Movie.objects.filter(country__icontains = now_country.strip()):
+                    movies_set.add(movie)
+            else:
+                types_dict[now_country.strip()] += 1
+            country_total_scores += 1
+    
+    select_movies = random.sample(movies_set, 50)
+    movie_scores = {}
+    for movie in select_movies:
+        now_types = movie.types.split("/")
+        now_countries = movie.country.split("/")
+        if movie.score.strip() != "无":
+            now_score = float(movie.score.strip()) / 10
+        else:
+            now_score = 0
+        type_score, country_score = 0, 0
+        for now_type in now_types:
+            if now_type.strip() in types_dict:
+                type_score += types_dict[now_type.strip()] / types_total_scores
+        for now_country in now_countries:
+            if now_country.strip() in country_dict:
+                country_score += types_dict[now_country.strip()] / country_total_scores
+        movie_scores[movie] = now_score * 8 + type_score * 6 + country_score * 3
+
+    movie_info = []
+    num = 0
+    for now_movie, score in sorted(movie_scores.items(), key = lambda x:x[1], reverse = True):
+        if num >= 6:
+            break
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        movie_info.append(now_movie_info)
+        num += 1
+    return movie_info
