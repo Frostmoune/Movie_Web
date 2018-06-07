@@ -20,19 +20,19 @@
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a class="tips" id="user" href="/user/{{now_user}}">{{now_user}}</a>
-                            </li>
-                            {% include 'Navigation.html' %}
-                            <li>
-                                <a type="button" href="{{index}}" class="tips" onclick="postLogOut()">注销</a>
-                            </li>
-                            <li>
-                                <a href="{{sign_up}}" class="tips">注册</a>
-                            </li>
-                            {% include 'Search_input.html' %}
-                        </ul>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="tips" id="user" href="/user/{{now_user}}">{{now_user}}</a>
+                        </li>
+                        {% include 'Navigation.html' %}
+                        <li>
+                            <a type="button" href="{{index}}" class="tips" onclick="postLogOut()">注销</a>
+                        </li>
+                        <li>
+                            <a href="{{sign_up}}" class="tips">注册</a>
+                        </li>
+                        {% include 'Search_input.html' %}
+                    </ul>
                 </div>
             </div>
         </nav>

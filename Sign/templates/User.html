@@ -18,21 +18,22 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand">
-                        <img alt="Brand" class="img-circle img-responsive" id="user_image">
+                        <img src="{{user_url}}" alt="Brand" class="img-circle img-responsive">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <p class="navbar-text text-left" id="user"></p>
+                            <a class="tips" id="user" href="/user/{{now_user}}">{{now_user}}</a>
                         </li>
                         {% include 'Navigation.html' %}
                         <li>
-                            <a type="button" id="log_out" class="tips" onclick="postLogOut()">注销</a>
+                            <a type="button" href="{{index}}" class="tips" onclick="postLogOut()">注销</a>
                         </li>
                         <li>
-                            <a id="signUp" class="tips">注册</a>
+                            <a href="{{sign_up}}" class="tips">注册</a>
                         </li>
+                        {% include 'Search_input.html' %}
                     </ul>
                 </div>
             </div>
@@ -45,90 +46,84 @@
                 <div id = "Seen_Movie"></div>
             </div>
             <div class="container" id="center4">
-                    <div class="row">
-                    {% for movie in seen_movie_list %}
-                        <div class="col-sm-4 col-md-2">
-                            <div class="thumbnail">
-                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
-                                <div class="caption">
-                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
-                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
-                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
-                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
-                                </div>
+                <div class="row">
+                {% for movie in seen_movie_list %}
+                    <div class="col-sm-4 col-md-2">
+                        <div class="thumbnail">
+                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                            <div class="caption">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
                             </div>
                         </div>
-                    {% if forloop.counter|divisibleby:5 %}
                     </div>
-                    <div class="row">
-                    {% endif %}
-                    {% empty %}
-                    <div class="col-sm-4 col-md-2">
-                        <p class="info_3">无结果</p>
-                    </div>
-                    {% endfor %}
-                    </div>
+                {% if forloop.counter|divisibleby:5 %}
                 </div>
+                <div class="row">
+                {% endif %}
+                {% empty %}
+                <p class="info_1">无结果</p>
+                {% endfor %}
+                </div>
+            </div>
             <br>
             <div id = "Favourite_zone">
                 <h3>我喜欢看的</h3>
                 <div id = "Like_Movie"></div>
             </div>
             <div class="container" id="center4">
-                    <div class="row">
-                    {% for movie in favourite_movie_list %}
-                        <div class="col-sm-4 col-md-2">
-                            <div class="thumbnail">
-                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
-                                <div class="caption">
-                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
-                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
-                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
-                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
-                                </div>
+                <div class="row">
+                {% for movie in favourite_movie_list %}
+                    <div class="col-sm-4 col-md-2">
+                        <div class="thumbnail">
+                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                            <div class="caption">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
                             </div>
                         </div>
-                    {% if forloop.counter|divisibleby:5 %}
                     </div>
-                    <div class="row">
-                    {% endif %}
-                    {% empty %}
-                    <div class="col-sm-4 col-md-2">
-                        <p class="info_3">无结果</p>
-                    </div>
-                    {% endfor %}
-                    </div>
+                {% if forloop.counter|divisibleby:5 %}
                 </div>
+                <div class="row">
+                {% endif %}
+                {% empty %}
+                <p class="info_1">无结果</p>
+                {% endfor %}
+                </div>
+            </div>
             <br>
             <div id = "Recommand_zone">
                 <h3>为你推荐</h3>
                 <div id = "Recommand_Movie"></div>
             </div>
             <div class="container" id="center4">
-                    <div class="row">
-                    {% for movie in recommand_movie_list %}
-                        <div class="col-sm-4 col-md-2">
-                            <div class="thumbnail">
-                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
-                                <div class="caption">
-                                    <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
-                                    <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
-                                    <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
-                                    <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
-                                </div>
+                <div class="row">
+                {% for movie in recommand_movie_list %}
+                    <div class="col-sm-4 col-md-2">
+                        <div class="thumbnail">
+                            <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><img src="../static/items/{{movie.picture}}" alt="{{movie.id}}" title="{{movie.title}}" id="movie_{{movie.id}}_picture">
+                            <div class="caption">
+                                <a href="../movie/{{movie.id}}" id="movie_{{movie.id}}_id"><strong class="info" id="movie_{{movie.id}}_title">{{movie.title}}</strong></a><br>
+                                <strong class="info" id="movie_{{movie.id}}_score">豆瓣评分：{{movie.score}}</strong><br>
+                                <p class="info_2" id="movie_{{movie.id}}_type">类型：{{movie.type}}</p>
+                                <p class="info_2" id="movie_{{movie.id}}_country">国家/地区：{{movie.country}}</p>
                             </div>
                         </div>
-                    {% if forloop.counter|divisibleby:5 %}
                     </div>
-                    <div class="row">
-                    {% endif %}
-                    {% empty %}
-                    <div class="col-sm-4 col-md-2">
-                        <p class="info_3">无结果</p>
-                    </div>
-                    {% endfor %}
-                    </div>
+                {% if forloop.counter|divisibleby:5 %}
                 </div>
+                <div class="row">
+                {% endif %}
+                {% empty %}
+                <p class="info_1">无结果</p>
+                {% endfor %}
+                </div>
+            </div>
         </div>
     </body>
 </html>

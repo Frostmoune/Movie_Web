@@ -11,6 +11,7 @@ from .forms import SignupForm,SigninForm
 from .views import index
 from Movies import movie
 from Movies.models import Movie,UserMovie
+from Movies import movie as signmovie
 import random
 import os
 import re
@@ -80,31 +81,31 @@ def doLogOut(request):
 def user(request,user):
     user_contents = {"now_title":"User"}
     user_contents = {"now_user":request.user}
-    m=[]
-    n=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='seen')
-    for x in n:
-        y=Movie.objects.filter(title__exact=x.movie_title)[0]
-        z={}
-        z['id']=y.image_id
-        z['picture']="poster/"+y.image_id+".jpg"
-        z['title']=y.title
-        z['score']=y.score
-        z['type']=y.types
-        z['country']=y.country
-        m.append(z)
-    user_contents['seen_movie_list']=m
-    m=[]
-    n=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='liked')
-    for x in n:
-        y=Movie.objects.filter(title__exact=x.movie_title)[0]
-        z={}
-        z['id']=y.image_id
-        z['picture']="poster/"+y.image_id+".jpg"
-        z['title']=y.title
-        z['score']=y.score
-        z['type']=y.types
-        z['country']=y.country
-        m.append(z)
-    user_contents['favourite_movie_list']=m
-    user_contents['recommand_movie_list']=[]
-    return render(request,'User.html',user_contents)
+    movie_info=[]
+    seen_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='seen')
+    for x in seen_movies:
+        now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        movie_info.append(now_movie_info)
+    user_contents['seen_movie_list']=movie_info
+    movie_info=[]
+    liked_movies=UserMovie.objects.filter(user_name__exact=request.user, movie_tag__exact='liked')
+    for x in liked_movies:
+        now_movie=Movie.objects.filter(title__exact=x.movie_title)[0]
+        now_movie_info={}
+        now_movie_info['id']=now_movie.image_id
+        now_movie_info['picture']="poster/"+now_movie.image_id+".jpg"
+        now_movie_info['title']=now_movie.title
+        now_movie_info['score']=now_movie.score
+        now_movie_info['type']=now_movie.types
+        now_movie_info['country']=now_movie.country
+        movie_info.append(now_movie_info)
+    user_contents['favourite_movie_list']=movie_info
+    user_contents['recommend_movie_list']=[]
+    return render(request,'User.html',dict(user_contents, **signmovie.contents))
